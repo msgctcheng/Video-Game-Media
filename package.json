@@ -1,0 +1,26 @@
+{
+  "name": "video-game-media",
+  "version": "1.0.0",
+  "description": "Video Game Media App in React",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msgctcheng/Video-Game-Media.git"
+  },
+  "keywords": [
+    "React",
+    "Video",
+    "Games",
+    "Games"
+  ],
+  "author": "dreadsovereign, elpr1988, mnelson11, msgctcheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msgctcheng/Video-Game-Media/issues"
+  },
+  "homepage": "https://github.com/msgctcheng/Video-Game-Media#readme"
+}
