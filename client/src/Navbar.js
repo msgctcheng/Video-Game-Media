@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import logo from './game-rally7.png';
+import game from './23385-200.png';
+import gameboy from './video-game-1856991_960_720.png';
+import controller from './icon-game-controller-a-512.png';
 import './navbar.css';
 
 
@@ -24,6 +27,7 @@ const Navbar = props =>
         >
           <a>News</a>
         </li>
+
       </ul>
       <form className="navbar-form navbar-left">
         <div className="form-group">

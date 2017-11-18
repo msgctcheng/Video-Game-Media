@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () =>
   <div className ="body">
-    <h1>HOME</h1>
+    <h1>Home</h1>
     <div className="panel panel-default">
         <div className="panel-heading">
         <h3 className="panel-title">Popular Games Carousel</h3>

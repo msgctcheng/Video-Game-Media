@@ -8,6 +8,13 @@ body{
  
   margin:10px;
   background: linear-gradient(to right, #222831, #494B67);
+  align-content: center;
 
+}
+
+
+
+h3, p{
+	color:black;
 }
 

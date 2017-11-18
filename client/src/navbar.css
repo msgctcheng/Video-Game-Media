@@ -5,20 +5,19 @@
  .container-fluid, .navbar, .btn{
 	background: -webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc));
     background-image: linear-gradient(#fff, #ccc);
-    border-radius: 6px;
+    border-radius: 9px;
     box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.4);
+
 
 }
 
 
-.nav, {
+.container-fluid, {
 	/*background: -webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc));
     background-image: linear-gradient(#fff, #ccc);
     border-radius: 6px;
     box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.4);*/
-    padding: 0 10px;
-    position: relative;
-    margin-top: 10px
+margin-top: 0;
 }
 
 
@@ -30,21 +29,26 @@ body{
 	background:#EEEEEE;
 	font-size: 17px;
 	font-family: 'Lora', serif;
+	text-align: center;
+
 
 }
 
 .btn{
 	height:35px;
+	margin-left: 5px;
 }
 
 
 .btn:hover{
-	background: rgb(255,189,8);
+	background: -webkit-gradient(linear, center top, center bottom, from(orange), to(#ccc));
+    background-image: linear-gradient(orange, #ccc);
+
 }
 
 .subnav{
-	width:305px;
-
+	font-size: 20px;
+	padding-right: 50px;
 
 }
 
