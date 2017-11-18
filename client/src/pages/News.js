@@ -1,35 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
+import NewsTabs from "./NewsTabs";
+import IGN from "./tabs/IGN";
+import Polygon from "./tabs/Polygon";
+import Gamespot from "./tabs/Gamespot";
 
-const News = () =>
-  <div>
-    <h1>News</h1>
-    <div className="panel panel-default">
-        <div className="panel-heading">
-        <h3 className="panel-title">IGN ARTICLES</h3>
-        </div>
+class News extends Component {
+  state = {
+    currentTab: "IGN"
+  };
 
-        <div className="panel-body">
-        Some Popular Games should go here
-        </div>
-    </div>
-    <div className="panel panel-default">
-        <div className="panel-heading">
-        <h3 className="panel-title">POLYGON ARTICLES</h3>
-        </div>
+  handleTab = tab => {
+    this.setState({ currentTab: tab });
+  };
 
-        <div className="panel-body">
-        Some Popular Games should go here
-        </div>
-    </div>
-    <div className="panel panel-default">
-        <div className="panel-heading">
-        <h3 className="panel-title">GAMESPOT ARTICLES</h3>
-        </div>
+  renderTab = () => {
+    if (this.state.currentTab === "IGN") {
+      return <IGN />;
+    } else if (this.state.currentTab === "Polygon") {
+      return <Polygon />;
+    } else if (this.state.currentTab === "Gamespot") {
+      return <Gamespot />;
+    } else {
+      return <IGN />;
+    }
+  };
 
-        <div className="panel-body">
-        Some Cool News should go here
-        </div>
-    </div>
-  </div>;
+  render() {
+    return (
+      <div>
+        <NewsTabs
+          currentTab={this.state.currentTab}
+          handleTab={this.handleTab}
+        />
+        {this.renderTab()}
+      </div>
+    );
+  }
+}
 
 export default News;
