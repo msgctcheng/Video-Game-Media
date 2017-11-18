@@ -1,7 +1,7 @@
 import React from "react";
 
 const NewsTabs = props =>
-  <ul className="nav nav-tabs">
+  <ul className="nav nav-tabs subnav ">
     <li
       onClick={() => props.handleTab("IGN")}
       className={props.currentTab === "IGN" ? "active" : ""}

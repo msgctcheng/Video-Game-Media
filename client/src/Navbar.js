@@ -4,14 +4,14 @@ import './navbar.css';
 
 
 const Navbar = props =>
-  <nav className="navbar ">
+  <nav className="navbar">
   <div className="container-fluid">
     <div className="navbar-header">
       <img className="icon" src={logo} alt={"logo"}/>
     </div>
 
     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul className="nav navbar-nav">
+      <ul className="nav navbar-nav nav-tabs">
       <li
         onClick={() => props.handlePage("Home")}
         className={props.currentPage === "Home" ? "active" : ""}
