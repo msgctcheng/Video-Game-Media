@@ -5,7 +5,9 @@ h1{
   font-family: 'Lora', serif;
 }
 body{
-  background: #222831;
+ 
   margin:10px;
+  background: linear-gradient(to right, #222831, #494B67);
 
 }
+
