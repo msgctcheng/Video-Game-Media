@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Saved from "./pages/Saved";
+import './App.css';
+
 
 class App extends Component {
   state = {

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import logo from './game-rally7.png';
+import './navbar.css';
+
 
 const Navbar = props =>
-      <nav className="navbar navbar-default">
+      <nav className="navbar ">
       <div className="container-fluid">
-
         <div className="navbar-header">
-          <h3>GameRally</h3>
+          <img className="icon" src={logo} alt={"logo"}/>
         </div>
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,7 +29,7 @@ const Navbar = props =>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Look it Up!"/>
             </div>
-            <button type="submit" className="btn btn-default">Submit</button>
+            <button type="submit" className="btn ">Submit</button>
           </form>
 
           <ul className="nav navbar-nav navbar-right">

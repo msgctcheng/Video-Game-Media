@@ -1,7 +1,7 @@
 import React from "react";
 
 const Home = () =>
-  <div>
+  <div className ="body">
     <h1>HOME</h1>
     <div className="panel panel-default">
         <div className="panel-heading">
