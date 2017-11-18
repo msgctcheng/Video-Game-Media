@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Saved from "./pages/Saved";
+import Search from "./pages/Search";
 import './App.css';
 
 
@@ -22,6 +23,8 @@ class App extends Component {
       return <News />;
     } else if (this.state.currentPage === "Saved") {
       return <Saved />
+    } else if (this.state.currentPage === "Search") {
+      return <Search />;
     } else {
       return <Home />;
     }
