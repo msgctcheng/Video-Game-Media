@@ -54,9 +54,4 @@ router.route("/retreiveGames")
             .catch(err => res.status(422).json(err));
     });
 
-
-
-home
-saved 
-news 
-search
+    module.exports = router;
