@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json());
 
 app.use(express.static("client/public"));
@@ -16,7 +17,7 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/nytimesReact", 
+  process.env.MONGODB_URI || "mongodb://localhost/gameRally", 
   {
     useMongoClient: true
   }
