@@ -4,7 +4,7 @@ const Home = () =>
   <div className ="body container">
     <h1>Home</h1>
     <div className="row">
-      <div className="panel panel-default col-md-6">
+      <div className="panel panel-default col-md-5">
         <div className="panel-heading">
         <h3 className="panel-title">Popular Games Carousel</h3>
         </div>
@@ -14,7 +14,7 @@ const Home = () =>
         </div>
     </div>
 
-      <div className="panel panel-default col-md-6">
+      <div className="panel panel-default col-md-5">
         <div className="panel-heading">
         <h3 className="panel-title">Latest News Carousel</h3>
         </div>

@@ -18,3 +18,15 @@ h3, p{
 	color:black;
 }
 
+
+.panel{
+
+	color:black;
+	margin-left: 65px;
+	margin-top: 10px;
+	align-content: center;
+}
+
+.panel-heading{
+
+}
