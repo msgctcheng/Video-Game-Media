@@ -9,12 +9,12 @@ const gameSchema = new Schema({
     releaseDate: {
         type: String,
         required: true
-    }
+    },
     summary: {
         type: String,
         required: true
     },
-    img-url: {
+    imgUrl: {
         type: String,
         required: true
     }
