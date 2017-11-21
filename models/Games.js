@@ -16,6 +16,10 @@ const gameSchema = new Schema({
     },
     imgUrl: {
         type: String,
+        required: true  
+    },
+    websites: {
+        type: String,
         required: true
     }
 })

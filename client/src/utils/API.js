@@ -8,6 +8,8 @@ const walmartKey = "zzjd8dnn2xptv4j8nbj8p9mu";
 
 const walmartQueryBase = "https://api.walmartlabs.com/v1/search/?query=";
 
+const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
+
 let searchString;
 
 export default {
@@ -27,3 +29,18 @@ export default {
     return axios.get(walmartQuery);
     },
  };
+
+ export default {
+
+    igdbSearch: () => {
+      client.games({
+          search: searchString,
+          fields: '*', // Return all fields
+          limit: 1, // Limit to 5 results
+      }).then(response => {
+        console.log(JSON.stringify(response.body, null));
+      }).catch(error => {
+          throw error;
+    });
+  }
+};
