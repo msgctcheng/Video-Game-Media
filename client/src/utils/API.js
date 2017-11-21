@@ -35,8 +35,8 @@ export default {
     igdbSearch: () => {
       client.games({
           search: searchString,
-          fields: '*', // Return all fields
-          limit: 1, // Limit to 5 results
+          fields: ["name", "cover", "release_dates.date", "summary", "websites"],
+          limit: 1
       }).then(response => {
         console.log(JSON.stringify(response.body, null));
       }).catch(error => {
