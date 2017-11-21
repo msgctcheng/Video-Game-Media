@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import NewsTabs from "./NewsTabs";
-import IGN from "./tabs/IGN";
-import Polygon from "./tabs/Polygon";
-import Gamespot from "./tabs/Gamespot";
+import IGN from "./IGN";
+import Polygon from "./Polygon";
+import Gamespot from "./Gamespot";
 
 class News extends Component {
   state = {
