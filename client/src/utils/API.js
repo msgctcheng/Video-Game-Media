@@ -10,6 +10,7 @@ const walmartQueryBase = "https://api.walmartlabs.com/v1/search/?query=";
 
 
 
+
 export default {
 
   dealSearch: (params) => {
@@ -29,5 +30,24 @@ export default {
         })
     )
     }
+  
+//    igdbSearch: () => {
+//       client.games({
+//           search: searchString,
+//           fields: ["name", "cover", "release_dates.date", "summary", "websites"],
+//           limit: 1
+//       }).then(response => {
+//         console.log(JSON.stringify(response.body, null));
+//       }).catch(error => {
+//           throw error;
+//     });
+//   }
+
 };
+
+
+
+
+
+   
 

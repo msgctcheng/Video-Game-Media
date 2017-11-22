@@ -22,9 +22,9 @@ h3, p{
 .panel{
 
 	color:black;
-	margin-left: 65px;
-	margin-top: 10px;
-	align-content: center;
+	margin: 20px;
+	align-items: center;
+
 }
 
 .panel-heading{
