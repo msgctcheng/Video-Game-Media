@@ -1,6 +1,7 @@
 import React from "react";
 
 const Polygon = () =>
+//LIST ITEMS
   <div className="polygon-headlines">
     <div>
 		<h1> Polygon Headlines</h1>

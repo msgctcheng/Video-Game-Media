@@ -4,14 +4,36 @@ import Home from "./Home";
 import News from "./News";
 import Saved from "./Saved";
 import Search from "./Search";
-
-
+import API from "../utils/API";
 
 class App extends Component {
   state = {
-    currentPage: "Home"
+    currentPage: "Home",
+    articleResults: [],
+    retailResults: [],
+    savedArticles: [],
+    savedGames: []
   };
 
+  searchWalmart = (query) => {
+    API.walmartSearch(query)
+      .then(res => {
+        console.log(res);
+      });
+  }
+  handleInputChange = (event) => {
+  const value = event.target.value;
+  const name = event.target.name;
+  
+  this.setState({
+    [name]: value
+  });
+  }
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    this.searchWalmart(this.state);
+    //call apis 
+  }
   handlePage = page => {
     this.setState({ currentPage: page });
   };
@@ -34,6 +56,8 @@ class App extends Component {
     return (
       <div>
         <Navbar
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
           currentPage={this.state.currentPage}
           handlePage={this.handlePage}
         />
