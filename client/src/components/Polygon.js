@@ -1,6 +1,8 @@
 import React from "react";
 
 const Polygon = () =>
+
+//LIST ITEMS
   <div className="polygon-headlines container">
   	<div className = "row">
   		<div className = "col-md-6">
@@ -36,6 +38,7 @@ const Polygon = () =>
 	      		<img src="https://cdn0.iconfinder.com/data/icons/social-glyph/30/twitch-120.png" alt="pic1"/>
 				<p> Paragraph with summaries of articles. </p>
 			</div>
+
 		</div>
   </div>
   </div>
