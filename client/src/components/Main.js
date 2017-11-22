@@ -21,6 +21,14 @@ class App extends Component {
         console.log(res);
       });
   }
+ searchDeals = (query) => {
+   API.dealSearch(query)
+      .then(res => {
+        console.log("--------");
+        console.log(res);
+     });
+ }
+
   handleInputChange = (event) => {
   const value = event.target.value;
   const name = event.target.name;
@@ -32,6 +40,7 @@ class App extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchWalmart(this.state);
+    this.searchDeals(this.state);
     //call apis 
   }
   handlePage = page => {
