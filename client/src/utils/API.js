@@ -1,5 +1,7 @@
 import axios from "axios";
 import $ from "jquery";
+
+
 const dealKey = "dfff166e5f83e467709331ec5908eb43fcf348ab";
 
 const dealQueryBase = "https://api.isthereanydeal.com/v01/game/prices/us/?key=" + dealKey; 
@@ -7,6 +9,7 @@ const dealQueryBase = "https://api.isthereanydeal.com/v01/game/prices/us/?key=" 
 const walmartKey = "zzjd8dnn2xptv4j8nbj8p9mu";
 
 const walmartQueryBase = "https://api.walmartlabs.com/v1/search/?query=";
+
 
 
 
@@ -35,7 +38,8 @@ export default {
         dataType: "jsonp"
         })
     );
-    }
+    },
+   
 
 };
 

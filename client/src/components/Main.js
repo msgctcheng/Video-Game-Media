@@ -5,6 +5,7 @@ import News from "./News";
 import Saved from "./Saved";
 import Search from "./Search";
 import API from "../utils/API";
+import axios from "axios";
 
 class App extends Component {
   state = {
@@ -24,7 +25,6 @@ class App extends Component {
  searchDeals = (query) => {
    API.dealSearch(query)
       .then(res => {
-        console.log("--------");
         console.log(res);
      });
  }
@@ -41,6 +41,9 @@ class App extends Component {
     event.preventDefault();
     this.searchWalmart(this.state);
     this.searchDeals(this.state);
+    axios.get("/api/savedValues/" + this.state.searchString).then(res => {
+      console.log(res);
+    })
     //call apis 
   }
   handlePage = page => {
