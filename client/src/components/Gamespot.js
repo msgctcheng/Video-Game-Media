@@ -4,9 +4,9 @@ const Gamespot = () =>
   <div className="gamespot-headlines container">
   	<div className = "row">
   		<div className = "col-md-6 iconTile"> 
-  			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGOO1cG272ZR1Po1iTJcnNT-&hl=en_US" frameborder="0" allowfullscreen></iframe>
-			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGMnbziXtzlUhLeHHyZAEACR&hl=en_US" frameborder="0" allowfullscreen></iframe>
-			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGNdvahXQ0yAFs6faDzXJwSd&hl=en_US" frameborder="0" allowfullscreen></iframe>
+  			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGOO1cG272ZR1Po1iTJcnNT-&hl=en_US" frameBorder="0" allowFullScreen></iframe>
+			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGMnbziXtzlUhLeHHyZAEACR&hl=en_US" frameBorder="0" allowFullScreen></iframe>
+			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGNdvahXQ0yAFs6faDzXJwSd&hl=en_US" frameBorder="0" allowFullScreen></iframe>
   		</div>
 		<div className = "col-md-6">
 	    	<div>

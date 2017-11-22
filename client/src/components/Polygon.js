@@ -1,14 +1,16 @@
 import React from "react";
 
+
+
 const Polygon = () =>
 
 //LIST ITEMS
   <div className="polygon-headlines container">
   	<div className = "row">
   		<div className = "col-md-6">
-  			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT4qz-BHsx3OC6DogkUd06ek&hl=en_US" frameborder="0" allowfullscreen></iframe>
-			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT5xZKh7TsCL4ydk7TOduLeu&hl=en_US" frameborder="0" allowfullscreen></iframe>
-			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT5VKfKA_m-gwT-P9FIB7kFH&hl=en_US" frameborder="0" allowfullscreen></iframe>
+  			<iframe className="video"  width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT4qz-BHsx3OC6DogkUd06ek&hl=en_US" frameBorder="0" allowFullScreen></iframe>
+			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT5xZKh7TsCL4ydk7TOduLeu&hl=en_US" frameBorder="0" allowFullScreen></iframe>
+			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT5VKfKA_m-gwT-P9FIB7kFH&hl=en_US" frameBorder="0" allowFullScreen></iframe>
 
   		</div>
   		<div className = "col-md-6">

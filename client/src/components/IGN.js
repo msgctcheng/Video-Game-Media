@@ -1,12 +1,14 @@
 import React from "react";
 
+
+
 const IGN = () =>
   <div className="ign-headlines container">
   	<div className="row">
   		<div className = "col-md-6">
-  			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJCfQUx87tZmI5ywgUUKeLiV&hl=en_US" frameborder="0" allowfullscreen></iframe>
-  			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJBqxpm-wSLRqvZaGttX6dzW&hl=en_US" frameborder="0" allowfullscreen></iframe>
-  			<iframe width="500" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJDn-R8C523Tg-eUEZYI3jz4&hl=en_US" frameborder="0" allowfullscreen></iframe>
+  			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJCfQUx87tZmI5ywgUUKeLiV&hl=en_US" frameBorder="0" allowFullScreen></iframe>
+  			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJBqxpm-wSLRqvZaGttX6dzW&hl=en_US" frameBorder="0" allowFullScreen></iframe>
+  			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJDn-R8C523Tg-eUEZYI3jz4&hl=en_US" frameBorder="0" allowFullScreen></iframe>
 
 
   		</div>

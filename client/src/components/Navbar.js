@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import logo from '../images/game-rally7.png';
-import game from '../images/23385-200.png';
-import gameboy from '../images/video-game-1856991_960_720.png';
-import controller from '../images/icon-game-controller-a-512.png';
 import SearchBar from "./SearchBar"
 
 const navbarStyle = {
@@ -26,6 +23,8 @@ const containerStyle ={
   boxShadow: "0px 0px 4px 2px rgba(0,0,0,0.4)",
   marginTop: 0
 }
+
+
 
 
 
