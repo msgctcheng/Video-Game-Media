@@ -4,6 +4,8 @@ const Gamespot = () =>
   <div className="gamespot-headlines container">
   	<div className = "row">
   		<div className = "col-md-6 iconTile"> 
+  			<h1> Latest Gamespot Videos</h1>
+  			<iframe width="450" height="315" src="http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=gamespot" frameBorder="0" allowFullScreen></iframe> 
   			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGOO1cG272ZR1Po1iTJcnNT-&hl=en_US" frameBorder="0" allowFullScreen></iframe>
 			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGMnbziXtzlUhLeHHyZAEACR&hl=en_US" frameBorder="0" allowFullScreen></iframe>
 			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLpg6WLs8kxGNdvahXQ0yAFs6faDzXJwSd&hl=en_US" frameBorder="0" allowFullScreen></iframe>

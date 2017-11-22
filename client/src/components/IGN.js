@@ -6,6 +6,8 @@ const IGN = () =>
   <div className="ign-headlines container">
   	<div className="row">
   		<div className = "col-md-6">
+  			<h1> Latest IGN Videos</h1>
+  			 <iframe width="450" height="315" src="http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=IGNentertainment" frameBorder="0" allowFullScreen></iframe> 
   			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJCfQUx87tZmI5ywgUUKeLiV&hl=en_US" frameBorder="0" allowFullScreen></iframe>
   			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJBqxpm-wSLRqvZaGttX6dzW&hl=en_US" frameBorder="0" allowFullScreen></iframe>
   			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLraFbwCoisJDn-R8C523Tg-eUEZYI3jz4&hl=en_US" frameBorder="0" allowFullScreen></iframe>

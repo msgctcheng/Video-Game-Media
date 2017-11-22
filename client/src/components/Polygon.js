@@ -8,6 +8,8 @@ const Polygon = () =>
   <div className="polygon-headlines container">
   	<div className = "row">
   		<div className = "col-md-6">
+  			<h1> Latest Polygon Videos</h1>
+  			<iframe width="450" height="315" src="http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=polygon" frameBorder="0" allowFullScreen></iframe> 
   			<iframe className="video"  width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT4qz-BHsx3OC6DogkUd06ek&hl=en_US" frameBorder="0" allowFullScreen></iframe>
 			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT5xZKh7TsCL4ydk7TOduLeu&hl=en_US" frameBorder="0" allowFullScreen></iframe>
 			<iframe className="video" width="450" height="315" src="https://www.youtube.com/embed/videoseries?list=PLaDrN74SfdT5VKfKA_m-gwT-P9FIB7kFH&hl=en_US" frameBorder="0" allowFullScreen></iframe>
