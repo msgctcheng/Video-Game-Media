@@ -4,6 +4,7 @@ import game from '../images/23385-200.png';
 import gameboy from '../images/video-game-1856991_960_720.png';
 import controller from '../images/icon-game-controller-a-512.png';
 import SearchBar from "./SearchBar"
+
 const navbarStyle = {
     background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
     backgroundImage: "linear-gradient(#fff, #ccc)",
@@ -17,6 +18,7 @@ const navbarStyle = {
 const iconStyle = {
   width: "125px"
 }
+
 const containerStyle ={
   background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
   backgroundImage: "linear-gradient(#fff, #ccc)",
