@@ -12,12 +12,20 @@ const savePage = {
 
 }
 
+const headings = {
+  fontSize: "23px",
+  fontFamily: "'Lora', serif",
+  textAlign: "center"
+
+
+}
+
 const Saved = () =>
 	<div>
 		<h1>Saved</h1>
 		<div className="panel " style={savePage}>
 			<div className="panel-heading">
-				<h2 className="panel-title">Saved Articles</h2>
+				<h2 className="panel-title" style={headings}>Saved Articles</h2>
 			</div>
 
 			<div className="panel-body">

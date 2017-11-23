@@ -8,7 +8,11 @@ const iconStyle={
 
 const panels = {
   backgroundImage: "linear-gradient(black, #0092CA)",
-  color:"white"
+  color:"white",
+}
+const headings = {
+  fontSize: "23px",
+  fontFamily: "'Lora', serif",
 
 }
 
@@ -18,7 +22,7 @@ const Home = () =>
     <div className="row">
       <div style={panels} className="panel col-md-5">
         <div className="panel-heading">
-        <h3 className="panel-title">Popular Games list</h3>
+        <h3 className="panel-title" style={headings}>Popular Games list</h3>
         </div>
 
         <div  className="panel-body">
@@ -31,7 +35,7 @@ const Home = () =>
 
       <div style={panels}  className="panel  col-md-5">
         <div className="panel-heading">
-        <h3 className="panel-title">Latest News list</h3>
+        <h3 className="panel-title" style={headings}>Latest News list</h3>
         </div>
 
         <div className="panel-body">
