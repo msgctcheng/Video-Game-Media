@@ -7,6 +7,7 @@ import Search from "./Search";
 import API from "../utils/API";
 import axios from "axios";
 
+
 class App extends Component {
   state = {
     currentPage: "Home",
@@ -22,25 +23,28 @@ class App extends Component {
         console.log(res);
       });
   }
- searchDeals = (query) => {
-   API.dealSearch(query)
+  searchDeals = (query) => {
+    API.dealSearch(query)
       .then(res => {
-        console.log(res);
-     });
- }
+        //console.log(res.data);
+      });
+  }
 
   handleInputChange = (event) => {
-  const value = event.target.value;
-  const name = event.target.name;
-  
-  this.setState({
-    [name]: value
-  });
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
   handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchWalmart(this.state);
     this.searchDeals(this.state);
+    axios.get("/api/scrape/" + this.state.searchString).then(res => {
+      console.log(res);
+    })
     axios.get("/api/savedValues/" + this.state.searchString).then(res => {
       console.log(res);
     })

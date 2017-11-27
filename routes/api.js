@@ -1,13 +1,57 @@
 const router = require("express").Router();
 const db =require("../models");
-
+const request = require("request-promise");
+const cheerio = require('cheerio');
 
 const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 
+
+router.route("/scrape/:searchString")
+    .get((req, res, next) => {
+
+    let spaceless = req.params.searchString.replace(/\s/g, '+');
+    
+    let gamestopResults = {};
+  
+    request("https://www.gamestop.com/browse?nav=16k-" + spaceless, function (err, resp, html) {
+        var $ = cheerio.load(html);
+
+      
+
+        $("div.products").map(function (i, element) {
+           
+            //Product Image
+            
+           gamestopResults.usedImg = $(element).children("div.preowned_product").first().children("div.alpha").children("a").children("img").attr("src");
+
+//product price
+            gamestopResults.usedPrice = $(element).children("div.preowned_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
+
+            gamestopResults.usedTitle = $(element).children("div.preowned_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
+       }); 
+
+       $("div.products").map( function (i, element) {
+            
+            //Product Image
+            gamestopResults.newImg = $(element).children("div.new_product").first().children("div.alpha").children("a").children("img").attr("src");
+
+//product price
+            gamestopResults.newPrice = $(element).children("div.new_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
+
+            gamestopResults.newTitle = $(element).children("div.new_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
+        });
+       
+        
+     }).then(() => {
+        res.json(gamestopResults)
+     });
+    });
+
+    
+
 router.route("/savedValues/:searchString")
     .get((req, res) => {
-        console.log(res, "hi");
         client.games({
             search: req.params.searchString,
             fields: ["name", "cover", "release_dates.date", "summary", "websites"],
@@ -19,6 +63,8 @@ router.route("/savedValues/:searchString")
             throw error;
         });
     });
+
+
 router.route("/saveArticle")
     .post((req, res) => {
         db.Article
