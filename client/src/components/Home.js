@@ -1,6 +1,6 @@
 import React from "react";
 import dog from '../images/Dog01.gif';
-import cat from '../images/Lcd5aX5xi.png';
+
 
 const iconStyle={
   width: "100px"
@@ -40,7 +40,7 @@ const Home = () =>
 
         <div className="panel-body">
         Some Cool News should go here
-        <img className="cat" src={cat} alt={"cat"} style={iconStyle}/>
+        
 
         </div>
       </div>

@@ -25,8 +25,11 @@
   "homepage": "https://github.com/msgctcheng/Video-Game-Media#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "igdb-api-node": "^3.1.0",
-    "mongoose": "^4.13.4"
+    "mongoose": "^4.13.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   }
 }
