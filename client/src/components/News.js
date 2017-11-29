@@ -3,11 +3,27 @@ import NewsTabs from "./NewsTabs";
 import IGN from "./IGN";
 import Polygon from "./Polygon";
 import Gamespot from "./Gamespot";
+import API from "../utils/API";
 
 class News extends Component {
   state = {
-    currentTab: "IGN"
+    currentTab: "IGN",
+    
   };
+
+  ignStuff = () => {
+    API.ignTopHeadlines()
+     .then(res => {
+       console.log("IGN IS AWESOME", res)
+     });
+  }
+ 
+  polyStuff = () => {
+    API.polygonTopHeadlines()
+     .then(res => {
+       console.log("POLYGON IS KINDA COOL", res)
+     });
+  }
 
   handleTab = tab => {
     this.setState({ currentTab: tab });
@@ -31,6 +47,8 @@ class News extends Component {
         <NewsTabs
           currentTab={this.state.currentTab}
           handleTab={this.handleTab}
+          ignStuff={this.ignStuff}
+          polyStuff={this.polyStuff}
         />
         {this.renderTab()}
       </div>

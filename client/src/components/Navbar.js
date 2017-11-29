@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from '../images/game-rally7.png';
-import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar";
+import API from "../utils/API";
 
 const navbarStyle = {
     background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
@@ -24,10 +25,6 @@ const containerStyle ={
   marginTop: 0
 }
 
-
-
-
-
 class Navbar extends Component {
   render() {
     return(
@@ -46,7 +43,7 @@ class Navbar extends Component {
           <a>Home</a>
         </li>
           <li
-            onClick={() => this.props.handlePage("News")}
+            onClick={() => this.props.initialNews()}
             className={this.props.currentPage === "News" ? "active" : ""}
           >
             <a>News</a>

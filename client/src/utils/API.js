@@ -37,6 +37,28 @@ export default {
       })
     );
   },
+
+  ignTopHeadlines: () => {
+    const ignQuery = "https://newsapi.org/v2/top-headlines?sources=ign&apiKey=13800756217a4be2bfd4e551654fb12a";
+    
+    return (
+      $.ajax ({
+        url: ignQuery,
+        dataType: "json"
+      })
+    );
+  },
+
+  polygonTopHeadlines: () => {
+    const polygonQuery ="https://newsapi.org/v2/top-headlines?sources=polygon&apiKey=13800756217a4be2bfd4e551654fb12a";
+
+    return (
+      $.ajax ({
+        url: polygonQuery,
+        dataType: "json"
+      })
+    );
+  }
 };
 
 

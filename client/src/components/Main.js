@@ -23,11 +23,24 @@ class App extends Component {
         console.log(res);
       });
   }
+
   searchDeals = (query) => {
     API.dealSearch(query)
       .then(res => {
         //console.log(res.data);
       });
+  }
+
+  initialNews() {
+    this.ignStuff();
+    this.handlePage("News");
+  }
+  
+  ignStuff() {
+    API.ignTopHeadlines()
+     .then(res => {
+       console.log("IGN IS AWESOME!", res)
+     });
   }
 
   handleInputChange = (event) => {
@@ -38,6 +51,7 @@ class App extends Component {
       [name]: value
     });
   }
+
   handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchWalmart(this.state);
@@ -50,6 +64,7 @@ class App extends Component {
     })
     //call apis 
   }
+  
   handlePage = page => {
     this.setState({ currentPage: page });
   };
@@ -76,6 +91,7 @@ class App extends Component {
           handleInputChange={this.handleInputChange}
           currentPage={this.state.currentPage}
           handlePage={this.handlePage}
+          initialNews={this.initialNews.bind(this)}
         />
         {this.renderPage()}
       </div>
