@@ -38,9 +38,9 @@ class App extends Component {
   
   ignStuff() {
     API.ignTopHeadlines()
-     .then(res => {
-       console.log("IGN IS AWESOME!", res)
-     });
+     .then(res => {this.setState({ articleResults: res.articles }), 
+      console.log("IGN articles", res.articles)}
+    )
   }
 
   handleInputChange = (event) => {
