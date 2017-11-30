@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import NewsTabs from "./NewsTabs";
-import IGN from "./IGN";
-import Polygon from "./Polygon";
-import Gamespot from "./Gamespot";
+// import IGN from "./IGN";
+// import Polygon from "./Polygon";
+// import Gamespot from "./Gamespot";
 import API from "../utils/API";
 import { ArticlesList, ArticlesItem } from "./ArticlesList";
 
@@ -30,18 +30,6 @@ class News extends Component {
     this.setState({ currentTab: tab });
   };
 
-  // renderTab = () => {
-  //   if (this.state.currentTab === "IGN") {
-  //     return (<IGN />);
-  //   } else if (this.state.currentTab === "Polygon") {
-  //     return <Polygon />;
-  //   } else if (this.state.currentTab === "Gamespot") {
-  //     return <Gamespot />;
-  //   } else {
-  //     return <IGN />;
-  //   }
-  // };
-
   render() {
     return (
       <div>
@@ -50,7 +38,7 @@ class News extends Component {
           handleTab={this.handleTab}
           ignStuff={this.ignStuff}
           polyStuff={this.polyStuff}
-          articles={this.state.articles}
+          // articles={this.state.articles}
         />
         <ArticlesList>
           {this.state.articles.map(article => {
@@ -66,7 +54,6 @@ class News extends Component {
             );
           })}
         </ArticlesList>
-        {this.state.currentTab}
       </div>
     );
   }

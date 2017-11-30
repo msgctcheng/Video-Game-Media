@@ -6,6 +6,8 @@ import Saved from "./Saved";
 import Search from "./Search";
 import API from "../utils/API";
 import axios from "axios";
+import { ArticlesList, ArticlesItem } from "./ArticlesList";
+import { GamesList, GamesItem } from "./GamesList";
 
 
 class App extends Component {
@@ -19,29 +21,33 @@ class App extends Component {
 
   searchWalmart = (query) => {
     API.walmartSearch(query)
-      .then(res => {
-        console.log(res);
+      .then(res => {this.setState({ retailResults: res.items}),
+        console.log("Walmart Data", res.items);
       });
+      this.handlePage("Search");
   }
 
   searchDeals = (query) => {
     API.dealSearch(query)
       .then(res => {
-        //console.log(res.data);
+        console.log("Search Deals", res.data);
       });
   }
 
   initialNews() {
-    this.ignStuff();
+    API.ignTopHeadlines()
+      .then(res => {this.setState({ articleResults: res.articles }),
+      console.log("state:", this.state.articleResults)}
+      )
     this.handlePage("News");
   }
   
-  ignStuff() {
-    API.ignTopHeadlines()
-     .then(res => {this.setState({ articleResults: res.articles }), 
-      console.log("IGN articles", res.articles)}
-    )
-  }
+  // ignStuff() {
+  //   API.ignTopHeadlines()
+  //    .then(res => {this.setState({ articleResults: res.articles }), 
+  //     console.log("IGN articles", res.articles)}
+  //   )
+  // }
 
   handleInputChange = (event) => {
     const value = event.target.value;
@@ -56,12 +62,15 @@ class App extends Component {
     event.preventDefault();
     this.searchWalmart(this.state);
     this.searchDeals(this.state);
-    axios.get("/api/scrape/" + this.state.searchString).then(res => {
-      console.log(res);
-    })
-    axios.get("/api/savedValues/" + this.state.searchString).then(res => {
-      console.log(res);
-    })
+    axios.get("/api/scrape/" + this.state.searchString)
+      .then(res => {
+        console.log("Gamestop", res.data)}
+      )
+    axios.get("/api/savedValues/" + this.state.searchString)
+      .then(res => {
+      console.log("IGDB", res.data)}
+      )
+    this.handlePage("Search");
     //call apis 
   }
   
@@ -73,11 +82,41 @@ class App extends Component {
     if (this.state.currentPage === "Home") {
       return <Home />;
     } else if (this.state.currentPage === "News") {
-      return <News />;
+      return (
+        <div>
+        <News />
+        <ArticlesList>
+        {this.state.articleResults.map(article => {
+          return (
+            <ArticlesItem
+            key={article.title}
+            title={article.title}
+            author={article.author}
+            description={article.description}
+            url={article.url}
+            img={article.urlToImage}
+            />
+          );
+        })}
+      </ArticlesList>
+      </div>);
     } else if (this.state.currentPage === "Saved") {
       return <Saved />
     } else if (this.state.currentPage === "Search") {
-      return <Search />;
+      return (
+        <div>
+				<GamesList>
+					{this.state.retailResults.map(game => {
+						return (
+							<GamesItem
+              name={game.name}
+                img={game.mediumImage}
+								price={game.salePrice}
+							/>
+						);
+					})}
+				</GamesList>
+			</div>);
     } else {
       return <Home />;
     }
