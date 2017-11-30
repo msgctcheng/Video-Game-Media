@@ -1,35 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "../utils/API";
+import { GamesList, GamesItem } from "./GamesList";
 
+class Search extends Component {
+	state = {
+		gameData: []
+	};
 
+	searchWalmart = (query) => {
+    API.walmartSearch(query)
+      .then(res => {this.setState({ gameData: res.items})
+        console.log("Walmart Game Data", this.setState.gameData);
+      });
+  }
 
-const Search = () =>
-  <div className="search-games">
-    <div>
-		<h1> Search Headlines</h1>
-			<h3>First Game Pic</h3>
-			<img src="https://cdn0.iconfinder.com/data/icons/social-glyph/30/vkontakte-120.png" alt="pic2"/>		
-			<p>$$$</p>
-		</div>
-		<div>
-			<h3>Second Game Pic</h3>
-			<img src="https://cdn0.iconfinder.com/data/icons/social-glyph/30/twitch-120.png" alt="pic1"/>
-			<p>$$$</p>
-		</div>
-		<div>
-			<h3>Third Game Pic</h3>
-			<img src="https://lh4.ggpht.com/YTDiP6yryhXLOFaG7-ZY0kkpRgAUQ-dipJytepR-pmiJO_RJqemDDiNhS_LvUCkoThA=w120" alt="pic5"/>
-			<p>$$$</p>
-		</div>
-		<div>
-			<h3>Fourth Game Pic</h3>
-			<img src="http://www.iconninja.com/files/503/812/914/meetup-icon.png" alt="pic3"/>
-			<p>$$$</p>
-		</div>
-		<div>
-			<h3>Fifth Game Pic</h3>
-			<img src="http://classwithapps.com/wp-content/uploads/2013/02/settings.png" alt="pic4"/>
-			<p>$$$</p>
-		</div>
-  </div>
+	render() {
+		return ( 
+			<div>
+				<GamesList>
+					{this.state.gameData.map(game => {
+						return (
+							<GamesItem
+								name={game.name}
+								thumbnail={game.imageEntities.mediumImage}
+								price={game.salePrice}
+							/>
+						);
+					})}
+				</GamesList>
+			</div>
+		);
+	}
+}
 
-export default Search; 
+export default Search;
