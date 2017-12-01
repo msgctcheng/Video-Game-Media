@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const db =require("../models");
+const db = require("../models");
 const request = require("request-promise");
 const cheerio = require('cheerio');
 
@@ -7,49 +7,72 @@ const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 
 
-router.route("/scrape/:searchString")
+router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
 
-    let spaceless = req.params.searchString.replace(/\s/g, '+');
-    
-    let gamestopResults = {};
-  
-    request("https://www.gamestop.com/browse?nav=16k-" + spaceless, function (err, resp, html) {
-        var $ = cheerio.load(html);
+        let spaceless = req.params.searchString.replace(/\s/g, '+');
 
-      
-
-        $("div.products").map(function (i, element) {
-           
-            //Product Image
-            
-           gamestopResults.usedImg = $(element).children("div.preowned_product").first().children("div.alpha").children("a").children("img").attr("src");
-
-//product price
-            gamestopResults.usedPrice = $(element).children("div.preowned_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
-
-            gamestopResults.usedTitle = $(element).children("div.preowned_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
-       }); 
-
-       $("div.products").map( function (i, element) {
-            
-            //Product Image
-            gamestopResults.newImg = $(element).children("div.new_product").first().children("div.alpha").children("a").children("img").attr("src");
-
-//product price
-            gamestopResults.newPrice = $(element).children("div.new_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
-
-            gamestopResults.newTitle = $(element).children("div.new_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
-        });
+        let gamestopResults = {};
        
-        
-     }).then(() => {
-        let gamestopArray = [gamestopResults];
-        res.json(gamestopArray);
-     });
-    });
+        request("https://www.gamestop.com/browse?nav=16k-" + spaceless, function (err, resp, html) {
+            var $ = cheerio.load(html);
 
+            $("div.products").map(function (i, element) {
+
+                //Product Image
+
+                gamestopResults.usedImg = "https://www.gamestop.com" + $(element).children("div.preowned_product").first().children("div.alpha").children("a").children("img").attr("src");
+
+                //product price
+                gamestopResults.usedPrice = $(element).children("div.preowned_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
+
+                gamestopResults.usedTitle = $(element).children("div.preowned_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
+            });
+
+            $("div.products").map(function (i, element) {
+
+                //Product Image
+                gamestopResults.newImg = "https://www.gamestop.com" + $(element).children("div.new_product").first().children("div.alpha").children("a").children("img").attr("src");
+
+                //product price
+                gamestopResults.newPrice = $(element).children("div.new_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
+
+                gamestopResults.newTitle = $(element).children("div.new_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
+            });
+
+
+        }).then(() => {
+            let gamestopArray = [gamestopResults];
+            res.json(gamestopArray);
+        });
+    });
     
+router.route("/articleScrape")
+    .get((req, res) => {
+        let articleResults = {}
+        request("https://www.gamespot.com", function (err, resp, html) {
+            var $ = cheerio.load(html);
+            //Popular article feed on gamespot.com
+
+            $("article").each(function (i, element) {
+
+                //Popular article titles
+                articleResults.title = $(element).children("a").children("div.media-body").children("h3.media-title").text();
+
+                //Popular article summaries
+                articleResults.summary = $(element).children("a").children("div.media-body").children("p.media-deck").text();
+
+                //Popular article links
+                articleResults.url = $(element).children("a").attr("href");
+
+                //Popular article img links
+                articleResults.img = $(element).children("a").children("figure").children("div").children("img").attr("src");
+            });
+
+        }).then(() => {
+            let articleArray = [articleResults];
+            res.json(articleArray);
+    });
 
 router.route("/savedValues/:searchString")
     .get((req, res) => {
@@ -59,7 +82,7 @@ router.route("/savedValues/:searchString")
             limit: 1
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
-            
+
         }).catch(error => {
             throw error;
         });
@@ -72,7 +95,7 @@ router.route("/saveArticle")
             .create(req.body)
             .then(results => res.json(results))
             .catch(err => res.status(500)
-            .json(err));
+                .json(err));
     });
 
 router.route("/saveGame")
@@ -81,7 +104,7 @@ router.route("/saveGame")
             .create(req.body)
             .then(results => res.json(results))
             .catch(err => res.status(500)
-            .json(err));
+                .json(err));
     });
 
 router.route("/retreiveArticles")
@@ -90,7 +113,7 @@ router.route("/retreiveArticles")
             .find({})
             .then(results => res.json(results))
             .catch(err => res.status(500)
-            .json(err));
+                .json(err));
     });
 
 router.route("/retreiveGames")
@@ -98,25 +121,25 @@ router.route("/retreiveGames")
         db.Games
             .find({})
             .then(results => res.json(results))
-            .catch(err => res,status(500)
-            .json(err));
+            .catch(err => res, status(500)
+                .json(err));
     });
 
-    router.route('/deleteArticle/:id')
+router.route('/deleteArticle/:id')
     .delete((req, res) => {
         db.Article
-            .findById({_id: req.params.id})
+            .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     });
-    router.route('/deleteGame/:id')
+router.route('/deleteGame/:id')
     .delete((req, res) => {
         db.Game
-            .findById({_id: req.params.id})
+            .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     });
 
-    module.exports = router;
+module.exports = router;
