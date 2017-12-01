@@ -73,6 +73,7 @@ router.route("/articleScrape")
             let articleArray = [articleResults];
             res.json(articleArray);
     });
+});
 
 router.route("/savedValues/:searchString")
     .get((req, res) => {

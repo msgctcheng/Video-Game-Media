@@ -5,7 +5,7 @@ import NewsTabs from "./NewsTabs";
 // import Gamespot from "./Gamespot";
 import API from "../utils/API";
 import { ArticlesList, ArticlesItem } from "./ArticlesList";
-
+import axios from "axios";
 class News extends Component {
   state = {
     currentTab: "IGN",
