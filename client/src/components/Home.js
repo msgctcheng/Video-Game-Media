@@ -1,5 +1,4 @@
 import React from "react";
-import dog from '../images/Dog01.gif';
 
 
 const iconStyle={
@@ -38,7 +37,6 @@ const Home = () =>
         <div  className="panel-body">
         Some Popular Games should go here
 
-        <img className="dog" src={dog} alt={"dog"} style={iconStyle}/>
 
         </div>
       </div>

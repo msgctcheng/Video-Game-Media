@@ -4,10 +4,7 @@ import SearchBar from "./SearchBar";
 import API from "../utils/API";
 
 const navbarStyle = {
-    background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
-    backgroundImage: "linear-gradient(#fff, #ccc)",
-    boxShadow: "0px 0px 4px 2px rgba(0,0,0,0.4)",
-    background: "#EEEEEE",
+
     fontSize: "17px",
     fontFamily: "'Lora', serif",
     textAlign: "center"
@@ -19,10 +16,7 @@ const iconStyle = {
 
 
 const containerStyle ={
-  background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
-  backgroundImage: "linear-gradient(#fff, #ccc)",
-  borderRadius: "9px",
-  boxShadow: "0px 0px 4px 2px rgba(0,0,0,0.4)",
+ 
   marginTop: 0
 }
 
