@@ -40,19 +40,49 @@ class News extends Component {
           polyStuff={this.polyStuff}
           // articles={this.state.articles}
         />
-        <ArticlesList>
-          {this.state.articles.map(article => {
-            return (
-              <ArticlesItem
-              key={article.title}
-              title={article.title}
-              author={article.author}
-              description={article.description}
-              url={article.url}
-              img={article.urlToImage}
-              />
-            );
-          })}
+        <ArticlesList className="row">
+          <div className = "col-md-4">
+            {this.state.articles.map(article => {
+              return (
+                <ArticlesItem
+                key={article.title}
+                title={article.title}
+                author={article.author}
+                description={article.description}
+                url={article.url}
+                img={article.urlToImage}
+                />
+              );
+            })}
+          </div>
+          <div className = "col-md-4">
+            {this.state.articles.map(article => {
+              return (
+                <ArticlesItem
+                key={article.title}
+                title={article.title}
+                author={article.author}
+                description={article.description}
+                url={article.url}
+                img={article.urlToImage}
+                />
+              );
+            })}
+          </div>
+          <div className = "col-md-4">
+            {this.state.articles.map(article => {
+              return (
+                <ArticlesItem
+                key={article.title}
+                title={article.title}
+                author={article.author}
+                description={article.description}
+                url={article.url}
+                img={article.urlToImage}
+                />
+              );
+            })}
+          </div>
         </ArticlesList>
       </div>
     );

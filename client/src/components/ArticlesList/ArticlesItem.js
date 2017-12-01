@@ -33,9 +33,7 @@ const buttons = {
 }
 // renders a bootstrap list item containing data from the api call
 export const ArticlesItem = props => (
-  <div  className = "row" >
-
-    <div  className = "col-md-4">
+ 
       <div style = {article} className="thumbnail">
         <img src={props.img} alt="img"/>
       <div>
@@ -44,7 +42,6 @@ export const ArticlesItem = props => (
         <p><a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Go to Article!</a>
         <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Save!</a></p>
       </div>
-    </div>
-  </div>
+
 </div>
 );

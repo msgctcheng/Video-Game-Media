@@ -6,7 +6,6 @@ import API from "../utils/API";
 const navbarStyle = {
     background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
     backgroundImage: "linear-gradient(#fff, #ccc)",
-    borderRadius: "9px",
     boxShadow: "0px 0px 4px 2px rgba(0,0,0,0.4)",
     background: "#EEEEEE",
     fontSize: "17px",
@@ -16,6 +15,8 @@ const navbarStyle = {
 const iconStyle = {
   width: "125px"
 }
+
+
 
 const containerStyle ={
   background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
@@ -68,6 +69,8 @@ class Navbar extends Component {
     </div>
 
     </nav>);
+  
+
   }
 }
 export default Navbar;
