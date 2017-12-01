@@ -71,7 +71,7 @@ class App extends Component {
     event.preventDefault();
     this.searchWalmart(this.state);
     this.searchDeals(this.state);
-    axios.get("/api/scrape/" + this.state.searchString)
+    axios.get("/api/retailScrape/" + this.state.searchString)
       .then(res => {
         this.setState({ gameStopArr: res.data});
         console.log("Gamestop", res.data);

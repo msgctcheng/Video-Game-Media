@@ -28,6 +28,13 @@ class News extends Component {
 
   handleTab = tab => {
     this.setState({ currentTab: tab });
+
+    //GameSPOT article scrape Axios call (move where you like)
+    axios.get("/api/articleScrape/")
+    .then(res => {
+      console.log("GameSpot", res.data);
+    })
+
   };
 
   render() {
