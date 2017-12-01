@@ -5,10 +5,11 @@ export const GamesItem = props => (
 <div className="row">
   <div className="col-sm-6 col-md-4">
     <div className="thumbnail">
-      <img src={props.img} alt="img"/>
+      <h3>{props.title}</h3>
+      <img src={props.img} alt={props.title}/>
     <div className="caption">
-      <h3>{props.name}</h3>
-      <p>${props.price}</p>
+      <p>{props.summary}</p>
+      <p>{props.price}</p>
     </div>
     </div>
   </div>
