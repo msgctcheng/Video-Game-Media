@@ -14,14 +14,17 @@ class App extends Component {
   state = {
     currentPage: "Home",
     articleResults: [],
-    retailResults: [],
+    igdbArr: [],
+    gameStopArr: [],
+    walmartArr:[],
     savedArticles: [],
-    savedGames: []
+    savedGames: [],
+    searchString: ""
   };
 
   searchWalmart = (query) => {
     API.walmartSearch(query)
-      .then(res => {this.setState({ retailResults: res.items}),
+      .then(res => {this.setState({ walmartArr: res.items}),
         console.log("Walmart Data", res.items);
       });
       this.handlePage("Search");
@@ -64,12 +67,14 @@ class App extends Component {
     this.searchDeals(this.state);
     axios.get("/api/scrape/" + this.state.searchString)
       .then(res => {
-        console.log("Gamestop", res.data)}
-      )
+        this.setState({ gameStopArr: res.data});
+        console.log("Gamestop", res.data);
+      })
     axios.get("/api/savedValues/" + this.state.searchString)
       .then(res => {
-      console.log("IGDB", res.data)}
-      )
+        this.setState({ igdbArr: res.data});
+        console.log("IGDB", res.data);
+      })
     this.handlePage("Search");
     //call apis 
   }
@@ -105,18 +110,49 @@ class App extends Component {
     } else if (this.state.currentPage === "Search") {
       return (
         <div>
-				<GamesList>
-					{this.state.retailResults.map(game => {
-						return (
-							<GamesItem
-              name={game.name}
-                img={game.mediumImage}
-								price={game.salePrice}
-							/>
-						);
-					})}
-				</GamesList>
-			</div>);
+          <div>
+            <div>
+            <GamesList>
+              {this.state.igdbArr.map(game => {
+                return (
+                  <GamesItem
+                    title={game.name}
+                    img={game.cover.url}
+                    summary={game.summary}
+                  />
+                );
+              })}
+            </GamesList>
+            </div>
+            <div>
+            <GamesList>
+              {this.state.gameStopArr.map(game => {
+                return (
+                  <GamesItem
+                    title={game.newTitle}
+                    price={game.newPrice}
+                  />
+                );
+              })}
+            </GamesList>
+            </div>
+            <div>
+            <GamesList>
+              {this.state.walmartArr.map(game => {
+                return (
+                  <GamesItem
+                    title={game.name}
+                    img={game.mediumImage}
+                    price={game.salePrice}
+                  />
+                );
+              })}
+            </GamesList>
+            </div>
+          </div>
+        </div>
+
+      );
     } else {
       return <Home />;
     }
@@ -126,8 +162,8 @@ class App extends Component {
     return (
       <div>
         <Navbar
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit.bind(this)}
+          handleInputChange={this.handleInputChange.bind(this)}
           currentPage={this.state.currentPage}
           handlePage={this.handlePage}
           initialNews={this.initialNews.bind(this)}
