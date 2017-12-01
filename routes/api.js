@@ -44,7 +44,8 @@ router.route("/scrape/:searchString")
        
         
      }).then(() => {
-        res.json(gamestopResults)
+        let gamestopArray = [gamestopResults];
+        res.json(gamestopArray);
      });
     });
 
