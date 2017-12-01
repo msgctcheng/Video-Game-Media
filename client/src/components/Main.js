@@ -9,6 +9,12 @@ import axios from "axios";
 import { ArticlesList, ArticlesItem } from "./ArticlesList";
 import { GamesList, GamesItem } from "./GamesList";
 
+const articles = {
+
+  padding: "20px",
+  margin: "10px"
+}
+
 
 class App extends Component {
   state = {
@@ -78,28 +84,35 @@ class App extends Component {
     this.setState({ currentPage: page });
   };
 
+
+
+
   renderPage = () => {
     if (this.state.currentPage === "Home") {
       return <Home />;
     } else if (this.state.currentPage === "News") {
       return (
-        <div>
-        <News />
-        <ArticlesList>
-        {this.state.articleResults.map(article => {
-          return (
-            <ArticlesItem
-            key={article.title}
-            title={article.title}
-            author={article.author}
-            description={article.description}
-            url={article.url}
-            img={article.urlToImage}
-            />
-          );
-        })}
-      </ArticlesList>
+
+        <div style={articles}>
+        <h1>Latest Articles</h1>
+          <News />
+          <ArticlesList>
+          {this.state.articleResults.map(article => {
+            return (
+              <ArticlesItem
+              key={article.title}
+              title={article.title}
+              author={article.author}
+              description={article.description}
+              url={article.url}
+              img={article.urlToImage}
+              />
+            );
+          })}
+        </ArticlesList>
       </div>);
+
+
     } else if (this.state.currentPage === "Saved") {
       return <Saved />
     } else if (this.state.currentPage === "Search") {
