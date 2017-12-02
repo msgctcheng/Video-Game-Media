@@ -49,29 +49,33 @@ router.route("/retailScrape/:searchString")
     
 router.route("/articleScrape")
     .get((req, res) => {
-        let articleResults = {}
+        
+        let articleResults = {};
+        let articleArray = [];
+
         request("https://www.gamespot.com", function (err, resp, html) {
-            var $ = cheerio.load(html);
+            var $ = cheerio.load(html)
+            
             //Popular article feed on gamespot.com
 
             $("article").each(function (i, element) {
-
+                
                 //Popular article titles
-                articleResults.title = $(element).children("a").children("div.media-body").children("h3.media-title").text();
+                articleResults[i] = 
+                
+                {
+                    title: $(element).children("a").children("div.media-body").children("h3.media-title").text(), 
+                    summary: $(element).children("a").children("div.media-body").children("p.media-deck").text(),
+                    url: $(element).children("a").attr("href"),
+                    img: $(element).children("a").children("figure").children("div").children("img").attr("src")
+                };
 
-                //Popular article summaries
-                articleResults.summary = $(element).children("a").children("div.media-body").children("p.media-deck").text();
-
-                //Popular article links
-                articleResults.url = $(element).children("a").attr("href");
-
-                //Popular article img links
-                articleResults.img = $(element).children("a").children("figure").children("div").children("img").attr("src");
+                articleArray.push(articleResults[i]);
+                console.log(articleResults[i]);
+          
             });
-
-        }).then(() => {
-            let articleArray = [articleResults];
-            res.json(articleArray);
+        }).then(() => {  
+        res.json(articleArray);
     });
 });
 
@@ -79,7 +83,7 @@ router.route("/savedValues/:searchString")
     .get((req, res) => {
         client.games({
             search: req.params.searchString,
-            fields: ["name", "cover", "release_dates.date", "summary", "websites"],
+            fields: ["name", "cover", "release_dates.date-lt", "summary", "websites"],
             limit: 1
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
@@ -88,7 +92,6 @@ router.route("/savedValues/:searchString")
             throw error;
         });
     });
-
 
 router.route("/saveArticle")
     .post((req, res) => {
