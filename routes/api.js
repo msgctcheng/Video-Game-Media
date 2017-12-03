@@ -33,7 +33,6 @@ router.route("/register")
         }
 });
 
-<<<<<<< HEAD
 router.route("/homePopularGames")
     .get((req, res) => {
         client.games({
@@ -49,13 +48,12 @@ router.route("/homePopularGames")
         
     });
 
-=======
 router.route("/login")
     .post(passport.authenticate("local"), function (req, res) {
          console.log(req.user);
           res.redirect("/");
 });
->>>>>>> 9b4541596a39a5ce143c347748837d8733039c5a
+
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
 

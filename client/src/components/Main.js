@@ -86,18 +86,13 @@ class App extends Component {
   }
   
   handlePage = page => {
-<<<<<<< HEAD
+
     this.setState({ currentPage: page });
-    
-  };
-=======
-    this.setState({ 
-      currentPage: page 
-    });
+
     console.log("page:", this.state.currentPage);
     console.log("article Results:", this.state.articleResults);
-  }
->>>>>>> 9b4541596a39a5ce143c347748837d8733039c5a
+  } 
+
 
 
 
