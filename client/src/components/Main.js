@@ -87,6 +87,7 @@ class App extends Component {
   
   handlePage = page => {
     this.setState({ currentPage: page });
+    
   };
 
 

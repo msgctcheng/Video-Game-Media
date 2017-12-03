@@ -7,6 +7,21 @@ const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 
 
+router.route("/homePopularGames")
+    .get((req, res) => {
+        client.games({
+            fields: ["name", "cover", "popularity"],
+            order: "popularity:desc",
+            limit: 10
+        }).then(response => {
+            res.send(JSON.stringify(response.body, null));
+            console.log(response.body);
+        }).catch(error => {
+            throw error;
+        });
+        
+    });
+
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
 
@@ -83,7 +98,7 @@ router.route("/savedValues/:searchString")
     .get((req, res) => {
         client.games({
             search: req.params.searchString,
-            fields: ["name", "cover", "release_dates.date-lt", "summary", "websites"],
+            fields: ["name", "cover", "release_dates.human", "summary", "websites"],
             limit: 1
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
@@ -91,6 +106,7 @@ router.route("/savedValues/:searchString")
         }).catch(error => {
             throw error;
         });
+        
     });
 
 router.route("/saveArticle")

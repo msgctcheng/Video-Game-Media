@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { Component } from "react";
+import axios from "axios";
 
 const iconStyle={
   width: "100px"
@@ -25,7 +25,24 @@ const subheadings = {
   textAlign: 'center' 
 }
 
-const Home = () =>
+
+class Home extends Component {
+  
+  state = {
+    articleFeed: [],
+    gameFeed: []    
+  };
+  
+  igdbPopularGames = () => {
+    axios.get("/api/homePopularGames")
+    .then(res => {
+      this.setState({ gameFeed: res.data});
+      console.log("IGDB Popular Games", res.data);
+    })
+  }
+  
+  render () {
+  return (
   <div className ="body" >
     <h1>Home</h1>
     <div className="row">
@@ -66,7 +83,10 @@ const Home = () =>
     </div>
 </div>
     
-  </div>;
+  </div>
+    )
+  }
+}
 
 export default Home;
 
