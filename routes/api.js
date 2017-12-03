@@ -2,11 +2,42 @@ const router = require("express").Router();
 const db = require("../models");
 const request = require("request-promise");
 const cheerio = require('cheerio');
-
+const passport = require("../config/passportRoutes");
+const User = require("../models/User");
 const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 
+router.route("/register")
+    .post((req, res)=>{
+        req.check("email", "Enter a Valid Email Address").isEmail();
+        req.check("password", "Enter a Valid Password").isLength({
+            min: 6
+        }).equals(req.body.confirmpassword);
 
+        let errors = req.validationErrors();
+
+        if (errors) {
+            console.error(errors);
+        } else {
+            var newUser = new User(req.body);
+
+            newUser.password = newUser.generateHash(req.body.password);
+
+            userEntry.save((err, doc) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(doc);
+                }
+            })
+        }
+});
+
+router.route("/login")
+    .post(passport.authenticate("local"), function (req, res) {
+         console.log(req.user);
+          res.redirect("/");
+});
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
 
