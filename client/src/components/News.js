@@ -12,22 +12,35 @@ class News extends Component {
     articles: []    
   };
 
+  componentDidMount() {
+    API.ignTopHeadlines()
+      .then(res => {this.setState({ articles: res.articles }),
+      console.log("News:", this.state.articles);
+    })
+  }
+
   ignStuff = () => {
     API.ignTopHeadlines()
-     .then(res => {this.setState({ articles: res.articles }), 
-     console.log("IGN is AWESOME!", res.articles)}
-   )
+     .then(res => {this.setState({ articles: res.articles }) 
+    //  console.log("IGN", this.state.articles)}
+  })
   }
  
   polyStuff = () => {
     API.polygonTopHeadlines()
-     .then(res => {this.setState({ articles: res.articles }),
-       console.log("POLYGON IS KINDA COOL", res.articles)}
-     )
+     .then(res => {this.setState({ articles: res.articles })
+      //  console.log("POLYGON", this.state.articles)}
+     })
   }
 
   handleTab = tab => {
-    this.setState({ currentTab: tab });
+    this.setState({ 
+      currentTab: tab
+    }, function() {
+      console.log("tab:", this.state.currentTab);
+      console.log("articles:", this.state.articles);
+    })
+
 
     //GameSPOT article scrape Axios call (move where you like)
     axios.get("/api/articleScrape/")
@@ -49,21 +62,7 @@ class News extends Component {
         />
         <ArticlesList className="row">
           <div className = "col-md-4">
-            {this.state.articles.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-          </div>
-          <div className = "col-md-4">
-            {this.state.articles.map(article => {
+            {this.state.articles.splice(5).map(article => {
               return (
                 <ArticlesItem
                 key={article.title}

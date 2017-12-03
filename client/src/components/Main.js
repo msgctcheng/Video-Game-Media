@@ -19,7 +19,7 @@ const articles = {
 class App extends Component {
   state = {
     currentPage: "Home",
-    articleResults: [],
+    // articleResults: [],
     igdbArr: [],
     gameStopArr: [],
     walmartArr:[],
@@ -30,8 +30,7 @@ class App extends Component {
 
   searchWalmart = (query) => {
     API.walmartSearch(query)
-      .then(res => {this.setState({ walmartArr: res.items}),
-        console.log("Walmart Data", res.items);
+      .then(res => {this.setState({ walmartArr: res.items})
       });
       this.handlePage("Search");
   }
@@ -45,11 +44,14 @@ class App extends Component {
 
   initialNews() {
     API.ignTopHeadlines()
-      .then(res => {this.setState({ articleResults: res.articles }),
-      console.log("state:", this.state.articleResults)}
+      .then(res => {this.setState({ articleResults: res.articles },
+        function() {
+          this.handlePage("News");
+          console.log("IGN:", this.state.articleResults)
+        }
       )
-    this.handlePage("News");
-  }
+      })
+    }
   
   // ignStuff() {
   //   API.ignTopHeadlines()
@@ -74,21 +76,28 @@ class App extends Component {
     axios.get("/api/retailScrape/" + this.state.searchString)
       .then(res => {
         this.setState({ gameStopArr: res.data});
-        console.log("Gamestop", res.data);
       })
     axios.get("/api/savedValues/" + this.state.searchString)
       .then(res => {
         this.setState({ igdbArr: res.data});
-        console.log("IGDB", res.data);
       })
     this.handlePage("Search");
     //call apis 
   }
   
   handlePage = page => {
+<<<<<<< HEAD
     this.setState({ currentPage: page });
     
   };
+=======
+    this.setState({ 
+      currentPage: page 
+    });
+    console.log("page:", this.state.currentPage);
+    console.log("article Results:", this.state.articleResults);
+  }
+>>>>>>> 9b4541596a39a5ce143c347748837d8733039c5a
 
 
 
@@ -98,58 +107,11 @@ class App extends Component {
       return <Home />;
     } else if (this.state.currentPage === "News") {
       return (
-
         <div style={articles}>
         <h1>Latest Articles</h1>
           <News />
-          <ArticlesList className="row">
-            <div className = "col-md-4">
-            {this.state.articleResults.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-            </div>
-            <div className = "col-md-4">
-            {this.state.articleResults.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-            </div>
-            <div className = "col-md-4">
-            {this.state.articleResults.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-            </div>
-
-        </ArticlesList>
-      </div>);
-
-
+        </div>
+      );
     } else if (this.state.currentPage === "Saved") {
       return <Saved />
     } else if (this.state.currentPage === "Search") {
