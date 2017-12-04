@@ -6,18 +6,6 @@ import axios from "axios";
 class News extends Component {
   state = {
     currentTab: "IGN",
-<<<<<<< HEAD
-    articles: []
-      
-  };
-
-  ignStuff = () => {
-    API.ignTopHeadlines()
-     .then(res => {this.setState({ articles: res.articles }), 
-     console.log("IGN is AWESOME!", res.articles)}
-     
-   )
-=======
     articles: []    
   };  
 
@@ -33,21 +21,13 @@ class News extends Component {
      .then(res => {this.setState({ articles: res.articles }) 
     //  console.log("IGN", this.state.articles)
   })
->>>>>>> 8e2181bb76655026ee17d84c71a2c0cabf0f9490
   }
  
   polyStuff = () => {
     API.polygonTopHeadlines()
-<<<<<<< HEAD
      .then(res => {this.setState({ articles: res.articles }),
        console.log("POLYGON IS KINDA COOL", res.articles)}
-       
-     )
-=======
-     .then(res => {this.setState({ articles: res.articles })
-      //  console.log("POLYGON", this.state.articles)
-     })
->>>>>>> 8e2181bb76655026ee17d84c71a2c0cabf0f9490
+    
   }
 
   gamespotStuff = () => {
