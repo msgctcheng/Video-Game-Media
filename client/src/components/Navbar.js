@@ -53,13 +53,13 @@ class Navbar extends Component {
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav nav-tabs">
         <li
-          onClick={() => this.props.handlePage("Home")}
+          onClick={() => this.props.igdbNewsFeed()}
           className={this.props.currentPage === "Home" ? "active" : ""}
         >
           <a>Home</a>
         </li>
           <li
-            onClick={() => this.props.initialNews()}
+            onClick={() => this.props.handlePage("News")}
             className={this.props.currentPage === "News" ? "active" : ""}
           >
             <a>News</a>
@@ -80,7 +80,7 @@ class Navbar extends Component {
           >
             <a>Saved</a>
           </li>
-          <li><a href="">Log In/Out</a></li>
+          <li><a href="/login">Log In/Out</a></li>
         </ul>
       </div>
     </div>

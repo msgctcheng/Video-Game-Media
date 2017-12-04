@@ -2,10 +2,74 @@ const router = require("express").Router();
 const db = require("../models");
 const request = require("request-promise");
 const cheerio = require('cheerio');
-
+const igdb = require('igdb-api-node').default;
+const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
+const passport = require("../config/passportRoutes");
+const User = require("../models/User");
 const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 
+router.route("/register")
+    .post((req, res)=>{
+        req.check("email", "Enter a Valid Email Address").isEmail();
+        req.check("password", "Enter a Valid Password").isLength({
+            min: 6
+        }).equals(req.body.confirmpassword);
+
+        let errors = req.validationErrors();
+
+        if (errors) {
+            console.error(errors);
+        } else {
+            var newUser = new User(req.body);
+
+            newUser.password = newUser.generateHash(req.body.password);
+
+            userEntry.save((err, doc) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(doc);
+                }
+            })
+        }
+});
+
+router.route("/homePopularGames")
+    .get((req, res) => {
+        client.games({
+            fields: ["name", "cover", "popularity"],
+            order: "popularity:desc",
+            limit: 10
+        }).then(response => {
+            res.send(JSON.stringify(response.body, null));
+            console.log(response.body);
+        }).catch(error => {
+            throw error;
+        });
+        
+    });
+
+router.route("/homeIgdbNewsFeed")
+    .get((req, res) => {
+        client.feed({
+            fields: "*",
+            limit: 10
+        }).then(response => {
+            res.send(JSON.stringify(response.body, null));
+            console.log(response.body);
+        }).catch(error => {
+            console.log("error", error);
+            throw error;
+        });
+        
+    });
+
+router.route("/login")
+    .post(passport.authenticate("local"), function (req, res) {
+         console.log(req.user);
+          res.redirect("/");
+});
 
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
@@ -71,7 +135,7 @@ router.route("/articleScrape")
                 };
 
                 articleArray.push(articleResults[i]);
-                console.log(articleResults[i]);
+                // console.log(articleResults[i]);
           
             });
         }).then(() => {  
@@ -83,7 +147,7 @@ router.route("/savedValues/:searchString")
     .get((req, res) => {
         client.games({
             search: req.params.searchString,
-            fields: ["name", "cover", "release_dates.date-lt", "summary", "websites"],
+            fields: ["name", "cover", "release_dates.human", "summary", "websites"],
             limit: 1
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
@@ -91,15 +155,28 @@ router.route("/savedValues/:searchString")
         }).catch(error => {
             throw error;
         });
+        
     });
 
 router.route("/saveArticle")
     .post((req, res) => {
+        console.log("We hit saved Article route-----------------------", req.body)
+        var articleData = {
+            source: req.body.url,
+            title: req.body.title,
+            articleText: req.body.summary
+        }
         db.Article
-            .create(req.body)
-            .then(results => res.json(results))
-            .catch(err => res.status(500)
-                .json(err));
+            .create(articleData)
+            .then(results => {
+                console.log("DB Results!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", results)
+                res.json(results)
+            })
+            .catch(err => {
+                console.log("Error?????????????????????????", err)
+                res.status(500)
+                .json(err)
+            });
     });
 
 router.route("/saveGame")

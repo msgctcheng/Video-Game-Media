@@ -10,28 +10,27 @@ import { ArticlesList, ArticlesItem } from "./ArticlesList";
 import { GamesList, GamesItem } from "./GamesList";
 
 const articles = {
-
   padding: "20px",
   margin: "10px"
 }
 
-
 class App extends Component {
   state = {
     currentPage: "Home",
-    articleResults: [],
+    // articleResults: [] ,
     igdbArr: [],
     gameStopArr: [],
     walmartArr:[],
     savedArticles: [],
     savedGames: [],
-    searchString: ""
+    searchString: "",
+    articleFeed: [],
+    gameFeed: []
   };
 
   searchWalmart = (query) => {
     API.walmartSearch(query)
-      .then(res => {this.setState({ walmartArr: res.items}),
-        console.log("Walmart Data", res.items);
+      .then(res => {this.setState({ walmartArr: res.items})
       });
       this.handlePage("Search");
   }
@@ -45,12 +44,22 @@ class App extends Component {
 
   initialNews() {
     API.ignTopHeadlines()
-      .then(res => {this.setState({ articleResults: res.articles }),
-      console.log("state:", this.state.articleResults)}
+      .then(res => {this.setState({ articleResults: res.articles },
+        function() {
+          this.handlePage("News");
+          //console.log("IGN:", this.state.articleResults)
+        }
       )
-    this.handlePage("News");
-  }
-  
+      })
+    }
+
+    // igdbNewsFeed = () => {
+    //   axios.get("/api/homeIgdbNewsFeed")
+    //   .then(res => {
+    //     this.setState({ articleFeed: res.data});
+    //     console.log("IGDB Latest News", res.data);
+    //   })
+    // }
   // ignStuff() {
   //   API.ignTopHeadlines()
   //    .then(res => {this.setState({ articleResults: res.articles }), 
@@ -61,7 +70,6 @@ class App extends Component {
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-
     this.setState({
       [name]: value
     });
@@ -74,81 +82,31 @@ class App extends Component {
     axios.get("/api/retailScrape/" + this.state.searchString)
       .then(res => {
         this.setState({ gameStopArr: res.data});
-        console.log("Gamestop", res.data);
       })
     axios.get("/api/savedValues/" + this.state.searchString)
       .then(res => {
         this.setState({ igdbArr: res.data});
-        console.log("IGDB", res.data);
       })
     this.handlePage("Search");
     //call apis 
   }
   
   handlePage = page => {
-    this.setState({ currentPage: page });
-  };
-
-
-
+    this.setState({ 
+      currentPage: page 
+    })
+  }
 
   renderPage = () => {
     if (this.state.currentPage === "Home") {
       return <Home />;
     } else if (this.state.currentPage === "News") {
       return (
-
         <div style={articles}>
         <h1>Latest Articles</h1>
           <News />
-          <ArticlesList className="row">
-            <div className = "col-md-4">
-            {this.state.articleResults.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-            </div>
-            <div className = "col-md-4">
-            {this.state.articleResults.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-            </div>
-            <div className = "col-md-4">
-            {this.state.articleResults.map(article => {
-              return (
-                <ArticlesItem
-                key={article.title}
-                title={article.title}
-                author={article.author}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                />
-              );
-            })}
-            </div>
-
-        </ArticlesList>
-      </div>);
-
-
+        </div>
+      );
     } else if (this.state.currentPage === "Saved") {
       return <Saved />
     } else if (this.state.currentPage === "Search") {
@@ -195,7 +153,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-
       );
     } else {
       return <Home />;
@@ -210,7 +167,6 @@ class App extends Component {
           handleInputChange={this.handleInputChange.bind(this)}
           currentPage={this.state.currentPage}
           handlePage={this.handlePage}
-          initialNews={this.initialNews.bind(this)}
         />
         {this.renderPage()}
       </div>
