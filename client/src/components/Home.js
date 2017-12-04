@@ -34,17 +34,17 @@ class Home extends Component {
   };
   
   componentDidMount() {
-    axios.get("/api/homeIgdbNewsFeed")
-    .then(res => {
-      this.setState({ articleFeed: res.data});
-      console.log("IGDB Latest News", res.data);
-    })
-    
-    // axios.get("/api/homePopularGames")
+    // axios.get("/api/homeIgdbNewsFeed")
     // .then(res => {
-    //   this.setState({ gameFeed: res.data});
-    //   console.log("IGDB Popular Games", res.data);
+    //   this.setState({ articleFeed: res.data});
+    //   console.log("IGDB Latest News", res.data);
     // })
+    
+    axios.get("/api/homePopularGames")
+    .then(res => {
+      this.setState({ gameFeed: res.data});
+      console.log("IGDB Popular Games", res.data);
+    })
   };
 
   // igdbPopularGames = () => {
