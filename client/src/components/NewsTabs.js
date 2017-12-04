@@ -33,15 +33,10 @@ const NewsTabs = props =>
       onClick={() => props.handleTab("Polygon")}
       className={props.currentTab === "Polygon" ? "active" : ""}
     >
-<<<<<<< HEAD
       <a style={centered} onClick = {() => props.polyStuff()}>
        <img className="Polylogo" src={Polylogo} alt={"Polygon logo"} style={iconStyle} />
         <p style={sitename}>Polygon</p>
-=======
-      <a onClick = {() => props.polyStuff()}>
-      <img className="Polylogo" src={Polylogo} alt={"Polygon logo"} style={iconStyle} />
 
->>>>>>> 8e2181bb76655026ee17d84c71a2c0cabf0f9490
       </a>
     </li>
     <li
