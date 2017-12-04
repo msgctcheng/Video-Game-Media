@@ -26,8 +26,8 @@ class News extends Component {
   polyStuff = () => {
     API.polygonTopHeadlines()
      .then(res => {this.setState({ articles: res.articles }),
-       console.log("POLYGON IS KINDA COOL", res.articles)}
-    
+       console.log("POLYGON IS KINDA COOL", res.articles);
+     })    
   }
 
   gamespotStuff = () => {
