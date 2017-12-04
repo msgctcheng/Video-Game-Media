@@ -32,7 +32,7 @@ class Navbar extends Component {
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav nav-tabs">
         <li
-          onClick={() => this.props.igdbNewsFeed()}
+          onClick={() => this.props.handlePage("Home")}
           className={this.props.currentPage === "Home" ? "active" : ""}
         >
           <a>Home</a>
