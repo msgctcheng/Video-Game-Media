@@ -35,10 +35,11 @@ const buttons = {
 export const ArticlesItem = props => (
  
       <div style = {article} className="thumbnail">
-        <img src={props.img} alt="img"/>
+        <img src={props.img} alt=""/>
+        <img src={props.image} alt=""/>
       <div>
         <h3 style = {captionTitle}>{props.title}</h3>
-        <p style = {caption}>{props.description}</p>
+        <p style = {caption}>{props.description}{props.summary}</p>
         <p><a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Go to Article!</a>
         <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Save!</a></p>
       </div>
