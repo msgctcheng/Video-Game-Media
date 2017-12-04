@@ -48,9 +48,10 @@ export const GamesItem = props => (
 <div className="row">
   <div className="col-sm-6 col-md-4">
     <div className="thumbnail" style={article}>
-      <h3 style={captionTitle}>{props.title}</h3>
+      <h3 style={captionTitle}>{props.title}{props.name}</h3>
       <img style={image} src={props.img} alt={props.title}/>
-    <div className="caption" style ={caption}>
+      <img style={image} src={props.thumbnail} alt={props.name}/>
+    <div className="caption" style={caption}>
       <p>{props.summary}</p>
       <p> ${props.price}</p>
       <p>

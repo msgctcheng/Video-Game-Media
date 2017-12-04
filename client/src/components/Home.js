@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { GamesList, GamesItem } from "./GamesList";
 
 const iconStyle={
   width: "100px"
@@ -69,8 +70,28 @@ class Home extends Component {
 
         <div  className="panel-body">
         Some Popular Games should go here
-
-
+        <GamesList>
+					{this.state.gameFeed.slice(0, 5).map(game => {
+						return (
+							<GamesItem
+								name={game.name}
+								thumbnail={game.cover.url}
+								// price={game.salePrice}
+							/>
+						);
+					})}
+				</GamesList>
+        <GamesList>
+					{this.state.gameFeed.slice(5, 10).map(game => {
+						return (
+							<GamesItem
+								name={game.name}
+								thumbnail={game.cover.url}
+								// price={game.salePrice}
+							/>
+						);
+					})}
+				</GamesList>
         </div>
       </div>
 
