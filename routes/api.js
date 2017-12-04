@@ -6,17 +6,15 @@ const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 const passport = require("../config/passportRoutes");
 const User = require("../models/User");
-const igdb = require('igdb-api-node').default;
-const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
+const { check, validationResult } = require('express-validator/check');
 
-router.route("/register")
-    .post((req, res)=>{
-        req.check("email", "Enter a Valid Email Address").isEmail();
-        req.check("password", "Enter a Valid Password").isLength({
-            min: 6
+router.post("/register", [
+        check("email", "Enter a Valid Email Address").isEmail()],
+         (req, res)=>{
+        check("password", "Enter a Valid Password").isLength({
+            min: 4
         }).equals(req.body.confirmpassword);
-
-        let errors = req.validationErrors();
+        let errors = req.validationResult;
 
         if (errors) {
             console.error(errors);
@@ -25,7 +23,7 @@ router.route("/register")
 
             newUser.password = newUser.generateHash(req.body.password);
 
-            userEntry.save((err, doc) => {
+            newUser.save((err, doc) => {
                 if (err) {
                     console.error(err);
                 } else {
