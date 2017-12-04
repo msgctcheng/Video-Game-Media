@@ -23,7 +23,9 @@ class App extends Component {
     walmartArr:[],
     savedArticles: [],
     savedGames: [],
-    searchString: ""
+    searchString: "",
+    articleFeed: [],
+    gameFeed: []
   };
 
   searchWalmart = (query) => {
@@ -39,6 +41,31 @@ class App extends Component {
         console.log("Search Deals", res.data);
       });
   }
+
+  initialNews() {
+    API.ignTopHeadlines()
+      .then(res => {this.setState({ articleResults: res.articles },
+        function() {
+          this.handlePage("News");
+          //console.log("IGN:", this.state.articleResults)
+        }
+      )
+      })
+    }
+
+    // igdbNewsFeed = () => {
+    //   axios.get("/api/homeIgdbNewsFeed")
+    //   .then(res => {
+    //     this.setState({ articleFeed: res.data});
+    //     console.log("IGDB Latest News", res.data);
+    //   })
+    // }
+  // ignStuff() {
+  //   API.ignTopHeadlines()
+  //    .then(res => {this.setState({ articleResults: res.articles }), 
+  //     console.log("IGN articles", res.articles)}
+  //   )
+  // }
 
   handleInputChange = (event) => {
     const value = event.target.value;
