@@ -28,8 +28,6 @@ const buttons = {
   borderRadius: "9px",
   boxShadow: "0px 0px 4px 2px rgba(0,0,0,0.4)",
   height: "35px",
-
-
 }
 // renders a bootstrap list item containing data from the api call
 export const ArticlesItem = props => (

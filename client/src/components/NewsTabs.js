@@ -4,7 +4,17 @@ import GSlogo from '../images/gamespot.png';
 import Polylogo from '../images/polygon-icon.png';
 
 const iconStyle = {
-  width: "30px"
+  width: "30px",
+}
+
+const sitename = {
+  color:"silver",
+  fontFamily: "'Lora', serif",
+} 
+
+const centered = {
+
+  alignItems: 'center'
 }
 
 const NewsTabs = props =>
@@ -13,8 +23,9 @@ const NewsTabs = props =>
       onClick={() => props.handleTab("IGN")}
       className={props.currentTab === "IGN" ? "active" : ""}
     >
-      <a onClick = {() => props.ignStuff()}> 
+      <a style={centered} onClick = {() => props.ignStuff()}> 
       <img className="IGNlogo" src={IGNlogo} alt={"IGN logo"} style={iconStyle}/>
+      <p style={sitename}>IGN</p>
 
       </a>
     </li>
@@ -22,9 +33,9 @@ const NewsTabs = props =>
       onClick={() => props.handleTab("Polygon")}
       className={props.currentTab === "Polygon" ? "active" : ""}
     >
-      <a onClick = {() => props.polyStuff()}>
+      <a style={centered} onClick = {() => props.polyStuff()}>
        <img className="Polylogo" src={Polylogo} alt={"Polygon logo"} style={iconStyle} />
-
+        <p style={sitename}>Polygon</p>
       </a>
     </li>
     <li
@@ -33,6 +44,7 @@ const NewsTabs = props =>
     >
       <a>
        <img className="GSlogo" src={GSlogo} alt={"Gamespot logo"} style={iconStyle}/>
+       <p style={sitename}>Gamespot</p>
       </a>
     </li>
   </ul>

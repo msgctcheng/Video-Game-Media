@@ -9,13 +9,15 @@ import axios from "axios";
 class News extends Component {
   state = {
     currentTab: "IGN",
-    articles: []    
+    articles: []
+      
   };
 
   ignStuff = () => {
     API.ignTopHeadlines()
      .then(res => {this.setState({ articles: res.articles }), 
      console.log("IGN is AWESOME!", res.articles)}
+     
    )
   }
  
@@ -23,6 +25,7 @@ class News extends Component {
     API.polygonTopHeadlines()
      .then(res => {this.setState({ articles: res.articles }),
        console.log("POLYGON IS KINDA COOL", res.articles)}
+       
      )
   }
 
@@ -40,6 +43,7 @@ class News extends Component {
   render() {
     return (
       <div>
+      
         <NewsTabs
           currentTab={this.state.currentTab}
           handleTab={this.handleTab}
