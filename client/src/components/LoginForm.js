@@ -45,6 +45,7 @@ render() {
                 <label htmlFor="passwordInput">Password</label>
                 <input name="password" onChange={this.handleChange} type="password" id="passwordInput" placeholder="Password"/>
                 <button onClick={this.handleFormSub} type="submit"> Log in </button>
+                <a href="/registration"> Register!</a> 
             </form>
         </div>
     )

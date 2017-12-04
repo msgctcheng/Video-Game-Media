@@ -5,7 +5,7 @@ const User = require("../models/User");
 
 passport.use(new LocalStrategy(
     {
-        usernameField: "email"
+        "email": "email"
     },
     function (email, password, done) {
         User.findOne({
