@@ -38,7 +38,7 @@ class Navbar extends Component {
           <a>Home</a>
         </li>
           <li
-            onClick={() => this.props.initialNews()}
+            onClick={() => this.props.handlePage("News")}
             className={this.props.currentPage === "News" ? "active" : ""}
           >
             <a>News</a>

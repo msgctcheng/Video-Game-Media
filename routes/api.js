@@ -2,6 +2,8 @@ const router = require("express").Router();
 const db = require("../models");
 const request = require("request-promise");
 const cheerio = require('cheerio');
+const igdb = require('igdb-api-node').default;
+const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 const passport = require("../config/passportRoutes");
 const User = require("../models/User");
 const igdb = require('igdb-api-node').default;
@@ -133,7 +135,7 @@ router.route("/articleScrape")
                 };
 
                 articleArray.push(articleResults[i]);
-                console.log(articleResults[i]);
+                // console.log(articleResults[i]);
           
             });
         }).then(() => {  
@@ -158,11 +160,23 @@ router.route("/savedValues/:searchString")
 
 router.route("/saveArticle")
     .post((req, res) => {
+        console.log("We hit saved Article route-----------------------", req.body)
+        var articleData = {
+            source: req.body.url,
+            title: req.body.title,
+            articleText: req.body.summary
+        }
         db.Article
-            .create(req.body)
-            .then(results => res.json(results))
-            .catch(err => res.status(500)
-                .json(err));
+            .create(articleData)
+            .then(results => {
+                console.log("DB Results!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", results)
+                res.json(results)
+            })
+            .catch(err => {
+                console.log("Error?????????????????????????", err)
+                res.status(500)
+                .json(err)
+            });
     });
 
 router.route("/saveGame")

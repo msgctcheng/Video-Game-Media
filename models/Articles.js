@@ -10,10 +10,10 @@ const articleSchema = new Schema({
         type: String,
         required: true
     },
-    articleDate: {
-        type: String,
-        required: true
-    },
+    // articleDate: {
+    //     type: String,
+    //     required: true
+    // },
     articleText: {
         type: String,
         required: true

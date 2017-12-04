@@ -10,16 +10,14 @@ import { ArticlesList, ArticlesItem } from "./ArticlesList";
 import { GamesList, GamesItem } from "./GamesList";
 
 const articles = {
-
   padding: "20px",
   margin: "10px"
 }
 
-
 class App extends Component {
   state = {
     currentPage: "Home",
-    // articleResults: [],
+    // articleResults: [] ,
     igdbArr: [],
     gameStopArr: [],
     walmartArr:[],
@@ -72,7 +70,6 @@ class App extends Component {
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-
     this.setState({
       [name]: value
     });
@@ -95,12 +92,10 @@ class App extends Component {
   }
   
   handlePage = page => {
-
-    this.setState({ currentPage: page });
-
-    //console.log("page:", this.state.currentPage);
-    //console.log("article Results:", this.state.articleResults);
-  } 
+    this.setState({ 
+      currentPage: page 
+    })
+  }
 
   renderPage = () => {
     if (this.state.currentPage === "Home") {
@@ -158,7 +153,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-
       );
     } else {
       return <Home />;
@@ -173,7 +167,6 @@ class App extends Component {
           handleInputChange={this.handleInputChange.bind(this)}
           currentPage={this.state.currentPage}
           handlePage={this.handlePage}
-          initialNews={this.initialNews.bind(this)}
         />
         {this.renderPage()}
       </div>
