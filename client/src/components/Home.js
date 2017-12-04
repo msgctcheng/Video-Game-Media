@@ -33,13 +33,29 @@ class Home extends Component {
     gameFeed: []    
   };
   
-  igdbPopularGames = () => {
-    axios.get("/api/homePopularGames")
+  componentDidMount() {
+    axios.get("/api/homeIgdbNewsFeed")
     .then(res => {
-      this.setState({ gameFeed: res.data});
-      console.log("IGDB Popular Games", res.data);
+      this.setState({ articleFeed: res.data});
+      console.log("IGDB Latest News", res.data);
     })
-  }
+    
+    // axios.get("/api/homePopularGames")
+    // .then(res => {
+    //   this.setState({ gameFeed: res.data});
+    //   console.log("IGDB Popular Games", res.data);
+    // })
+  };
+
+  // igdbPopularGames = () => {
+  //   axios.get("/api/homePopularGames")
+  //   .then(res => {
+  //     this.setState({ gameFeed: res.data});
+  //     console.log("IGDB Popular Games", res.data);
+  //   })
+  // }
+
+  
   
   render () {
   return (

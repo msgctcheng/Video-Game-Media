@@ -10,7 +10,7 @@ class News extends Component {
   state = {
     currentTab: "IGN",
     articles: []    
-  };
+  };  
 
   componentDidMount() {
     API.ignTopHeadlines()
