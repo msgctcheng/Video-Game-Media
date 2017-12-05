@@ -71,6 +71,7 @@ class Home extends Component {
         <div  className="panel-body">
         Some Popular Games should go here
         <GamesList>
+        <div className="col-md-4">
 					{this.state.gameFeed.slice(0, 5).map(game => {
 						return (
 							<GamesItem
@@ -79,9 +80,10 @@ class Home extends Component {
 								// price={game.salePrice}
 							/>
 						);
-					})}
-				</GamesList>
-        <GamesList>
+          })}
+        </div>
+        <div className="col-md-4">
+
 					{this.state.gameFeed.slice(5, 10).map(game => {
 						return (
 							<GamesItem
@@ -90,7 +92,8 @@ class Home extends Component {
 								// price={game.salePrice}
 							/>
 						);
-					})}
+          })}
+        </div>
 				</GamesList>
         </div>
       </div>
