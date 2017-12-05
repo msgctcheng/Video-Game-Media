@@ -69,7 +69,6 @@ class Home extends Component {
         </div>
 
         <div  className="panel-body">
-        Some Popular Games should go here
         <GamesList>
         <div className="col-md-4">
 					{this.state.gameFeed.map(game => {
@@ -92,7 +91,6 @@ class Home extends Component {
         </div>
 
         <div className="panel-body">
-          Some Cool News should go here
         </div>
       </div>
         

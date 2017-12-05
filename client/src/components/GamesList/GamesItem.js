@@ -16,10 +16,9 @@ const buttons = {
   height: "35px",
 }
 const article = {
-  margin:"10px",
-  padding:"10px",
   textAlign:"center",
   backgroundImage: "linear-gradient(black, #0092CA)",
+  width:"375px",
 
 }
 
@@ -38,7 +37,7 @@ const captionTitle = {
 }
 
 const image = {
-  border:"black solid 5px"
+  border:"black solid 5px",
 }
 
 
@@ -51,9 +50,7 @@ export const GamesItem = props => (
     <img style={image} src={props.thumbnail} alt=""/>
   <div className="caption" style={caption}>
     <p>{props.summary}</p>
-    <p> ${props.price}</p>
     <p>
-      <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Buying Option</a>
       <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Save Game</a>
     </p>
   </div>
