@@ -72,19 +72,7 @@ class Home extends Component {
         Some Popular Games should go here
         <GamesList>
         <div className="col-md-4">
-					{this.state.gameFeed.slice(0, 5).map(game => {
-						return (
-							<GamesItem
-								name={game.name}
-								thumbnail={game.cover.url}
-								// price={game.salePrice}
-							/>
-						);
-          })}
-        </div>
-        <div className="col-md-4">
-
-					{this.state.gameFeed.slice(5, 10).map(game => {
+					{this.state.gameFeed.map(game => {
 						return (
 							<GamesItem
 								name={game.name}

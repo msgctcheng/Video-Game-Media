@@ -16,19 +16,19 @@ class Search extends Component {
 
 	render() {
 		return ( 
-			<div>
-				<GamesList>
-					{this.state.gameData.map(game => {
-						return (
-							<GamesItem
-								name={game.name}
-								thumbnail={game.imageEntities.mediumImage}
-								price={game.salePrice}
-							/>
-						);
-					})}
-				</GamesList>
-			</div>
+			<GamesList>
+				<div className="col-md-4">
+				{this.state.gameData.map(game => {
+					return (
+						<GamesItem
+							name={game.name}
+							thumbnail={game.imageEntities.mediumImage}
+							price={game.salePrice}
+						/>
+					);
+				})}
+				</div>
+			</GamesList>
 		);
 	}
 }
