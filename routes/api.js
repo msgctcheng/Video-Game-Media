@@ -7,32 +7,61 @@ const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
 const passport = require("../config/passportRoutes");
 const User = require("../models/User");
 const { check, validationResult } = require('express-validator/check');
+const { matchedData, sanitize } = require('express-validator/filter');
+const bCrypt = require('bcrypt-nodejs'); 
+const mongoose = require("mongoose");
+// router.post("/register", [
+//         check("email", "Enter a Valid Email Address").isEmail()],
+//          (req, res)=>{
+//         check("password", "Enter a Valid Password").isLength({
+//             min: 4
+//         }).equals(req.body.confirmpassword);
+//         let errors = req.validationResult;
 
-router.post("/register", [
-        check("email", "Enter a Valid Email Address").isEmail()],
-         (req, res)=>{
-        check("password", "Enter a Valid Password").isLength({
-            min: 4
-        }).equals(req.body.confirmpassword);
-        let errors = req.validationResult;
+//         if (errors) {
+//             console.error(errors);
+//         } else {
+//             var newUser = new User(req.body);
 
-        if (errors) {
-            console.error(errors);
-        } else {
-            var newUser = new User(req.body);
+//             newUser.password = newUser.generateHash(req.body.password);
 
-            newUser.password = newUser.generateHash(req.body.password);
+//             newUser.save((err, doc) => {
+//                 if (err) {
+//                     console.error(err);
+//                 } else {
+//                     console.log(doc);
+//                 }
+//             })
+//         }
+// });
+router.post('/register', [
+    check('email').isEmail().withMessage('Enter a valid email')
+    .trim()
+    .normalizeEmail(),
 
-            newUser.save((err, doc) => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log(doc);
-                }
-            })
+    check('password', 'Enter a valid password').isLength({min:6})
+    ], (req, res) => {
+        var newUser = new User(req.body);
+
+        // Added
+        var generateHash = function(password) {
+            return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         }
-});
 
+        newUser.password = generateHash(req.body.password);
+
+        console.log(newUser, "Hello") // the password does get hashed here. Need to fix how it gets saved to the db
+
+        // This doesn't work just yet. the Save mongoose function, I believe, is for the client side. I think .create was the function for the server side
+        newUser.save(function(err, doc) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(doc);
+            } 
+        })
+    }
+)
 router.route("/homePopularGames")
     .get((req, res) => {
         client.games({

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema ({
@@ -22,14 +22,32 @@ const userSchema = new Schema ({
     }
 });
 
-userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bycrpt.genSaltSync(8), null);
-};
+// userSchema.pre('save', function(next) {  
+//     const user = this,
+//           SALT_FACTOR = 5;
+  
+//     if (!user.isModified('password')) return next();
+  
+//     bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+//       if (err) return next(err);
+  
+//       bcrypt.hash(user.password, salt, null, function(err, hash) {
+//         if (err) return next(err);
+//         user.password = hash;
+//         next();
+//       });
+//     });
+//   });
+  
+  // Method to compare password for login
+  userSchema.methods.comparePassword = function(candidatePassword, cb) {  
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+      if (err) { return cb(err); }
+  
+      cb(null, isMatch);
+    });
+  }
 
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password)
-};
-
-const User = mongoose.model("User", userSchema);
+ const User = mongoose.model("User", userSchema);
 
 module.exports = User;
