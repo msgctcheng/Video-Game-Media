@@ -94,10 +94,19 @@ router.route("/homeIgdbNewsFeed")
 
 router.route("/login")
     .post(passport.authenticate("local"), function (req, res) {
-         console.log(req.user);
-          res.redirect("/");
+         res.json(req.user);
+        console.log("You are logged in");
 });
-
+router.route("/findUser/:email").get(function(req, res) {
+    User.findOne({
+        "email": req.params.email
+    }).exec( function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+        }
+    })
+})
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
 
