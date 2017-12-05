@@ -10,6 +10,8 @@ class LoginForm extends Component {
     }
 
 loginUser = (mail, pw) => {
+    axios.get("/api/findUser/${mail}", {})
+    .then(function(response) {
     axios.post("/api/login", {
         email: mail,
         password: pw
@@ -18,6 +20,7 @@ loginUser = (mail, pw) => {
     }).catch(function(error){
         console.error(error);
     });
+})
 }
 
 handleChange = (event) => {
