@@ -8,6 +8,7 @@ import API from "../utils/API";
 import axios from "axios";
 import { ArticlesList, ArticlesItem } from "./ArticlesList";
 import { GamesList, GamesItem } from "./GamesList";
+import { WebsiteList, WebsiteItem } from "./Websites";
 
 const articles = {
   padding: "20px",
@@ -25,12 +26,22 @@ class App extends Component {
     savedGames: [],
     searchString: "",
     articleFeed: [],
-    gameFeed: []
+    gameFeed: [],
+    websites: [],
+    cardName: "",
+    cardSummary: "",
+    cardImage: "",
+    cardGPrice: "",
+    cardWPrice: "",
   };
 
   searchWalmart = (query) => {
     API.walmartSearch(query)
-      .then(res => {this.setState({ walmartArr: res.items})
+      .then(res => {
+        this.setState({ 
+          walmartArr: res.items,
+          cardWPrice: res.items[0].salePrice}),
+        console.log("Walmart Data", res.items)
       });
       this.handlePage("Search");
   }
@@ -81,11 +92,23 @@ class App extends Component {
     this.searchDeals(this.state);
     axios.get("/api/retailScrape/" + this.state.searchString)
       .then(res => {
-        this.setState({ gameStopArr: res.data});
+        this.setState({ 
+          gameStopArr: res.data,
+          cardGPrice: res.data[0].newPrice
+        });
+        console.log("Gamespot Data", res.data);
       })
     axios.get("/api/savedValues/" + this.state.searchString)
       .then(res => {
-        this.setState({ igdbArr: res.data});
+        this.setState({ 
+          igdbArr: res.data, 
+          cardName: res.data[0].name, 
+          cardSummary: res.data[0].summary, 
+          cardImage: res.data[0].cover.url, 
+          websites: res.data[0].websites 
+        });
+        console.log("IGDB Game Data", res.data);
+        console.log(res.data[0].name);
       })
     this.handlePage("Search");
     //call apis 
@@ -114,20 +137,38 @@ class App extends Component {
         <div>
           <div>
             <div>
-            <GamesList>
+              <div>
+                <h1>{this.state.cardName}</h1>
+                <p>{this.state.cardSummary}</p>
+                <img src={this.state.cardImage}/>
+                <p>{this.state.cardGPrice}</p>
+                <p>${this.state.cardWPrice}</p>
+                </div>
+             {/* <GamesList>
               {this.state.igdbArr.map(game => {
                 return (
+                  <div>
                   <GamesItem
                     title={game.name}
                     img={game.cover.url}
                     summary={game.summary}
-                  />
+                  /> */}
+                   <WebsiteList>
+                    {this.state.websites.map(website => {
+                      return (
+                        <WebsiteItem
+                          url={website.url}
+                        />
+                      );
+                    })}
+                  </WebsiteList>
+                  </div>
                 );
               })}
-            </GamesList>
+            {/* </GamesList> */}
             </div>
-            <div>
-            <GamesList>
+            {/* <div> */}
+            {/* <GamesList>
               {this.state.gameStopArr.map(game => {
                 return (
                   <GamesItem
@@ -136,9 +177,9 @@ class App extends Component {
                   />
                 );
               })}
-            </GamesList>
-            </div>
-            <div>
+            </GamesList> */}
+            {/* </div> */}
+            {/* <div>
             <GamesList>
               {this.state.walmartArr.map(game => {
                 return (
@@ -150,9 +191,8 @@ class App extends Component {
                 );
               })}
             </GamesList>
-            </div>
+            </div> */}
           </div>
-        </div>
       );
     } else {
       return <Home />;
