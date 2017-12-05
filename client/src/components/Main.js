@@ -108,7 +108,7 @@ class App extends Component {
           websites: res.data[0].websites 
         });
         console.log("IGDB Game Data", res.data);
-        console.log(res.data[0].name);
+        console.log(res.data[0].websites);
       })
     this.handlePage("Search");
     //call apis 

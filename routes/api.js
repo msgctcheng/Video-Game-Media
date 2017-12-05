@@ -79,17 +79,15 @@ router.route("/homePopularGames")
 
 router.route("/homeIgdbNewsFeed")
     .get((req, res) => {
-        client.feed({
-            fields: "*",
+        client.feeds({
+            fields: ["pulse.title", "pulse.summary", "pulse.image", "pulse.url"],
+            expand: ["pulse"],
             limit: 10
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
-            console.log(response.body);
         }).catch(error => {
-            console.log("error", error);
             throw error;
         });
-        
     });
 
 router.route("/login")
