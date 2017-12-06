@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import logo from '../images/game-rally-name2.png';
-
-
+import Login from "../Login";
 import SearchBar from "./SearchBar";
 import API from "../utils/API";
+import Auth from "../Auth/Auth";
+import history from "../history";
 
+
+const auth = new Auth();
+
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
 const navbarStyle = {
 
     fontSize: "17px",
@@ -80,7 +89,7 @@ class Navbar extends Component {
           >
             <a>Saved</a>
           </li>
-          <li><a href="/login">Log In/Out</a></li>
+          <li><Login auth={auth} /></li>
         </ul>
       </div>
     </div>
