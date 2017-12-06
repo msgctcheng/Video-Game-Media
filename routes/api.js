@@ -8,9 +8,6 @@ const User = require("../models/User");
 const mongoose = require("mongoose");
 let couldId = "";
 
-
-const User = require("../models/User");
-
 const mongoose = require("mongoose");
 
 router.route("/homePopularGames")
