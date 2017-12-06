@@ -96,7 +96,7 @@ class App extends Component {
           gameStopArr: res.data,
           cardGPrice: res.data[0].newPrice
         });
-        console.log("Gamespot Data", res.data);
+        console.log("Gamestop Data", res.data);
       })
     axios.get("/api/savedValues/" + this.state.searchString)
       .then(res => {
@@ -104,7 +104,7 @@ class App extends Component {
           igdbArr: res.data, 
           cardName: res.data[0].name, 
           cardSummary: res.data[0].summary, 
-          cardImage: res.data[0].cover.url, 
+          cardImage: "https://igdb.spacechop.com/igdb/image/upload/t_cover_big/" + res.data[0].cover.cloudinary_id + ".jpg", 
           websites: res.data[0].websites 
         });
         console.log("IGDB Game Data", res.data);

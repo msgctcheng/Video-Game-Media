@@ -10,6 +10,7 @@ const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
 const bCrypt = require('bcrypt-nodejs'); 
 const mongoose = require("mongoose");
+let couldId = "";
 // router.post("/register", [
 //         check("email", "Enter a Valid Email Address").isEmail()],
 //          (req, res)=>{
@@ -179,17 +180,16 @@ router.route("/articleScrape")
 
 router.route("/savedValues/:searchString")
     .get((req, res) => {
+        let cloudId = '';
         client.games({
             search: req.params.searchString,
-            fields: ["name", "cover", "release_dates.human", "summary", "websites"],
+            fields: ["name", "cover", "cover.cloudinary_id", "release_dates.human", "summary", "websites"],
             limit: 1
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
-
         }).catch(error => {
             throw error;
         });
-        
     });
 
 router.route("/saveArticle")
