@@ -29,6 +29,7 @@ class News extends Component {
        console.log("POLYGON IS KINDA COOL", res.articles);
      })    
   }
+  
 
   gamespotStuff = () => {
     axios.get("/api/articleScrape/")
