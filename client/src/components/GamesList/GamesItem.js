@@ -19,6 +19,7 @@ const article = {
   textAlign:"center",
   backgroundImage: "linear-gradient(black, #0092CA)",
   width:"375px",
+  border:"silver, 2px, solid"
 
 }
 
