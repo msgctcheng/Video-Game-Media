@@ -38,15 +38,19 @@ class Home extends Component {
   componentDidMount() {
     axios.get("/api/homeIgdbNewsFeed")
     .then(res => {
-      this.setState({ articleFeed: res.data});
+      this.setState({ articleFeed: res.data });
       console.log("IGDB Latest News", res.data);
     })
     
     axios.get("/api/homePopularGames")
     .then(res => {
+<<<<<<< HEAD
+      this.setState({ gameFeed: res.data });
+=======
       this.setState({ 
         gameFeed: res.data
         });
+>>>>>>> 76344a86eaaa64298a48f032f97e859791c9f3f1
       console.log("IGDB Popular Games", res.data);
     })
   };
