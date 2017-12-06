@@ -44,13 +44,13 @@ class Home extends Component {
     
     axios.get("/api/homePopularGames")
     .then(res => {
-<<<<<<< HEAD
+
       this.setState({ gameFeed: res.data });
-=======
+
       this.setState({ 
         gameFeed: res.data
         });
->>>>>>> 76344a86eaaa64298a48f032f97e859791c9f3f1
+
       console.log("IGDB Popular Games", res.data);
     })
   };
