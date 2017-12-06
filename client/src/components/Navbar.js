@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 import API from "../utils/API";
 import Auth from "../Auth/Auth";
 import history from "../history";
-
+import {Button } from 'react-bootstrap';
 
 const auth = new Auth();
 
@@ -39,7 +39,24 @@ const nameStyle = {
 
   width:"100",
 }
-
+const buttonStyle = {
+  color: "#fff",
+  backgroundColor: "#337ab7",
+  borderColor: "#2e6da4",
+  display: "inline-block",
+  padding: "6px 12px",
+  marginBottom: "0",
+  fontSize: "14px",
+  fontWeight: "400",
+  lineHeight: "1.42857143",
+  textAlign: "center",
+  whiteSpace: "nowrap",
+  verticalAlign: "middle",
+  cursor: "pointer",
+  border: "1px solid transparent",
+  borderRadius: "4px",
+  marginRight: "5px"
+}
 
 const containerStyle ={
  
@@ -87,7 +104,7 @@ class Navbar extends Component {
             onClick={() => this.props.handlePage("Saved")}
             className={this.props.currentPage === "Saved" ? "active" : ""}
           >
-            <a>Saved</a>
+            <button style={buttonStyle}>Saved</button>
           </li>
           <li><Login auth={auth} /></li>
         </ul>
