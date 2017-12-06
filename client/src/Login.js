@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 import './App.css';
+import jquery from "jquery";
 
 class Login extends Component {
   goTo(route) {
@@ -9,10 +10,12 @@ class Login extends Component {
 
   login() {
     this.props.auth.login();
+   
   }
 
   logout() {
     this.props.auth.logout();
+  
   }
 
   render() {
@@ -24,21 +27,19 @@ class Login extends Component {
                   <Button
                     bsStyle="primary"
                     className="btn-margin"
+                    id="signOn"
                     onClick={this.login.bind(this)}
-                  >
-                    Log In
-                  </Button>
+                  >Log In</Button>
                 )
             }
             {
-              isAuthenticated() && (
+             isAuthenticated() && (
                   <Button
                     bsStyle="primary"
                     className="btn-margin"
                     onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </Button>
+                    id="signOut"
+                  >Log Out</Button>
                 )
             }
         

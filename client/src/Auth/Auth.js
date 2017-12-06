@@ -1,5 +1,6 @@
 import auth0 from 'auth0-js';
 import history from "../history"
+
 export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'video-game-media.auth0.com',
@@ -10,9 +11,11 @@ export default class Auth {
     scope: 'openid'
   });
 
-  login() {
+  login() { 
     this.auth0.authorize();
+    this.handleAuthentication();
   }
+
 
   constructor() {
     this.login = this.login.bind(this);
@@ -34,6 +37,7 @@ export default class Auth {
     });
   }
 
+
   setSession(authResult) {
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
@@ -42,6 +46,7 @@ export default class Auth {
     localStorage.setItem('expires_at', expiresAt);
     // navigate to the home route
     history.replace('/home');
+  
   }
 
   logout() {
