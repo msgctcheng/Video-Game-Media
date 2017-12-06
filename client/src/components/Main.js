@@ -12,7 +12,36 @@ import { WebsiteList, WebsiteItem } from "./Websites";
 
 const articles = {
   padding: "20px",
-  margin: "10px"
+  margin: "10px",
+  border:"silver, 2px, solid",
+
+}
+
+const image = {
+  border:"black solid 5px",
+}
+
+const searchResult = {
+  textAlign:"center",
+  backgroundImage: "linear-gradient(black, #0092CA)",
+  width:"800px",
+  marginLeft:"20%"
+}
+
+const caption={
+  color:"silver",
+  textAlign:"left",
+  padding:"10px",
+  fontSize:"16px",
+}
+
+const captionTitle = {
+    fontFamily: "'Lora', serif",
+    color:"black",
+    background:"white",
+    border:"black solid 5px",
+    textAlign:"center",
+
 }
 
 class App extends Component {
@@ -120,6 +149,9 @@ class App extends Component {
     })
   }
 
+
+
+
   renderPage = () => {
     if (this.state.currentPage === "Home") {
       return <Home />;
@@ -137,13 +169,13 @@ class App extends Component {
         <div>
           <div>
             <div>
-              <div>
-                <h1>{this.state.cardName}</h1>
-                <p>{this.state.cardSummary}</p>
-                <img src={this.state.cardImage}/>
+              <div style={searchResult}>
+                <h1 style={captionTitle}>{this.state.cardName}</h1>
+                <p style={caption}>{this.state.cardSummary}</p>
+                <img style={image} src={this.state.cardImage}/>
                 <p>{this.state.cardGPrice}</p>
                 <p>${this.state.cardWPrice}</p>
-                </div>
+              </div>
              {/* <GamesList>
               {this.state.igdbArr.map(game => {
                 return (
