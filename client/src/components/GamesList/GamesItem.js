@@ -51,10 +51,9 @@ export const GamesItem = props => (
     <img style={image} src={props.thumbnail} alt=""/>
   <div className="caption" style={caption}>
     <p>{props.summary}</p>
-    <p> ${props.price}</p>
+    <p>{props.price}</p>
     <p>
-      <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Buying Option</a>
-      <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Save Game</a>
+      <a style={buttons} className="btn btn-primary" role="button" href={props.url}>Save Game</a>
     </p>
   </div>
   </div>

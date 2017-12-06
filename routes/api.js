@@ -196,11 +196,19 @@ router.route("/savedValues/:searchString")
 
 router.route("/saveArticle")
     .post((req, res) => {
-        console.log("We hit saved Article route-----------------------", req.body)
-        var articleData = {
-            source: req.body.url,
-            title: req.body.title,
-            articleText: req.body.summary
+        var articleData = {};
+        if (req.body.description === "" || req.body.description === undefined) {
+            articleData = {
+                source: req.body.url,
+                title: req.body.title,
+                articleText: req.body.summary
+            }
+        } else {
+            articleData = {
+                source: req.body.url,
+                title: req.body.title,
+                articleText: req.body.description
+            }
         }
         db.Article
             .create(articleData)
@@ -209,7 +217,6 @@ router.route("/saveArticle")
                 res.json(results)
             })
             .catch(err => {
-                console.log("Error?????????????????????????", err)
                 res.status(500)
                 .json(err)
             });

@@ -38,7 +38,7 @@ export const ArticlesItem = props => (
         <h3 style = {captionTitle}>{props.title}</h3>
         <p style = {caption}>{props.description}{props.summary}</p>
         <p><a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Go to Article!</a>
-        <a style = {buttons} className="btn btn-primary" role="button" href={props.url}>Save!</a></p>
+        <a style = {buttons} className="btn btn-primary" role="button" onClick={props.clickToSave}>Save!</a></p>
       </div>
 </div>
 );

@@ -32,14 +32,17 @@ class News extends Component {
 
   gamespotStuff = () => {
     axios.get("/api/articleScrape/")
-    .then(res => {this.setState({ articles: res.data })
+      .then(res => {this.setState({ articles: res.data })
       console.log("GameSpot", res.data);
-      // post the article to the database
-      // axios.post("/api/saveArticle", res.data[0])
-      // .then(res => {
-      //   console.log("Res from back-end", res);
-      // })
     })
+  }
+
+  clickToSave = (article) => {
+    console.log("Save Button clicked", article);
+      axios.post("/api/saveArticle", article)
+      .then(res => {
+        console.log("Click", res);
+      })
   }
 
   handleTab = tab => {
@@ -65,6 +68,7 @@ class News extends Component {
             {this.state.articles.slice(0, 5).map(article => {
               return (
                 <ArticlesItem
+                clickToSave={() => this.clickToSave(article)}
                 key={article.title}
                 title={article.title}
                 author={article.author}
@@ -81,6 +85,7 @@ class News extends Component {
             {this.state.articles.slice(5,10).map(article => {
               return (
                 <ArticlesItem
+                clickToSave={() => this.clickToSave(article)}
                 key={article.title}
                 title={article.title}
                 author={article.author}
@@ -97,6 +102,7 @@ class News extends Component {
             {this.state.articles.slice(10, 16).map(article => {
               return (
                 <ArticlesItem
+                clickToSave={() => this.clickToSave(article)}               
                 key={article.title}
                 title={article.title}
                 author={article.author}
