@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from './components/Main.js';
-import Login from "./components/Login";
-import Registration from "./components/Registration";
-
+import Login from "./Login";
+import Auth from "./Auth/Auth";
+import history from "./history";
 import './App.css';
 
+const auth = new Auth();
 
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
 
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history} component={Login}>
          
         <div className="App">
-          <Switch>
-             <Route exact path="/" component={Main} />
-             <Route path="/registration" component={Registration} />
-             <Route path="/login" component={Login} />
-            </Switch>
+         
+          <Route path="/" render={(props) => <Main auth={auth} {...props} />}/>
+         
         </div>
        
       </Router>

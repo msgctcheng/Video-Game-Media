@@ -24,17 +24,11 @@
   },
   "homepage": "https://github.com/msgctcheng/Video-Game-Media#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
-    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
     "igdb-api-node": "^3.1.1",
     "mongoose": "^4.13.6",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   }

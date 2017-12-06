@@ -4,65 +4,10 @@ const request = require("request-promise");
 const cheerio = require('cheerio');
 const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
-const passport = require("../config/passportRoutes");
 const User = require("../models/User");
-const { check, validationResult } = require('express-validator/check');
-const { matchedData, sanitize } = require('express-validator/filter');
-const bCrypt = require('bcrypt-nodejs'); 
 const mongoose = require("mongoose");
 let couldId = "";
-// router.post("/register", [
-//         check("email", "Enter a Valid Email Address").isEmail()],
-//          (req, res)=>{
-//         check("password", "Enter a Valid Password").isLength({
-//             min: 4
-//         }).equals(req.body.confirmpassword);
-//         let errors = req.validationResult;
 
-//         if (errors) {
-//             console.error(errors);
-//         } else {
-//             var newUser = new User(req.body);
-
-//             newUser.password = newUser.generateHash(req.body.password);
-
-//             newUser.save((err, doc) => {
-//                 if (err) {
-//                     console.error(err);
-//                 } else {
-//                     console.log(doc);
-//                 }
-//             })
-//         }
-// });
-router.post('/register', [
-    check('email').isEmail().withMessage('Enter a valid email')
-    .trim()
-    .normalizeEmail(),
-
-    check('password', 'Enter a valid password').isLength({min:6})
-    ], (req, res) => {
-        var newUser = new User(req.body);
-
-        // Added
-        var generateHash = function(password) {
-            return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-        }
-
-        newUser.password = generateHash(req.body.password);
-
-        console.log(newUser, "Hello") // the password does get hashed here. Need to fix how it gets saved to the db
-
-        // This doesn't work just yet. the Save mongoose function, I believe, is for the client side. I think .create was the function for the server side
-        newUser.save(function(err, doc) {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(doc);
-            } 
-        })
-    }
-)
 router.route("/homePopularGames")
     .get((req, res) => {
         client.games({
@@ -74,7 +19,6 @@ router.route("/homePopularGames")
         }).catch(error => {
             throw error;
         });
-        
     });
 
 router.route("/homeIgdbNewsFeed")
@@ -90,21 +34,6 @@ router.route("/homeIgdbNewsFeed")
         });
     });
 
-router.route("/login")
-    .post(passport.authenticate("local"), function (req, res) {
-         res.json(req.user);
-        console.log("You are logged in");
-});
-router.route("/findUser/:email").get(function(req, res) {
-    User.findOne({
-        "email": req.params.email
-    }).exec( function(err, doc) {
-        if (err) {
-            console.log(err);
-        } else {
-        }
-    })
-})
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
 
@@ -193,11 +122,19 @@ router.route("/savedValues/:searchString")
 
 router.route("/saveArticle")
     .post((req, res) => {
-        console.log("We hit saved Article route-----------------------", req.body)
-        var articleData = {
-            source: req.body.url,
-            title: req.body.title,
-            articleText: req.body.summary
+        var articleData = {};
+        if (req.body.description === "" || req.body.description === undefined) {
+            articleData = {
+                source: req.body.url,
+                title: req.body.title,
+                articleText: req.body.summary
+            }
+        } else {
+            articleData = {
+                source: req.body.url,
+                title: req.body.title,
+                articleText: req.body.description
+            }
         }
         db.Article
             .create(articleData)
@@ -206,7 +143,6 @@ router.route("/saveArticle")
                 res.json(results)
             })
             .catch(err => {
-                console.log("Error?????????????????????????", err)
                 res.status(500)
                 .json(err)
             });
