@@ -31,7 +31,9 @@ class Home extends Component {
   
   state = {
     articleFeed: [],
-    gameFeed: []    
+    gameFeed: [],
+    gameTitle: [],
+    gameImage: []    
   };
   
   componentDidMount() {
@@ -43,7 +45,12 @@ class Home extends Component {
     
     axios.get("/api/homePopularGames")
     .then(res => {
-      this.setState({ gameFeed: res.data});
+      
+
+      this.setState({ 
+        gameFeed: res.data
+        
+        });
       console.log("IGDB Popular Games", res.data);
     })
   };
@@ -65,7 +72,7 @@ class Home extends Component {
 						return (
 							<GamesItem
 								name={game.name}
-								thumbnail={game.cover.url}
+								thumbnail={game.cover.url.replace("t_thumb", "t_cover_big")}
 								// price={game.salePrice}
 							/>
 						);
