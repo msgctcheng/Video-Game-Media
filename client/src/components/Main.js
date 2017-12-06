@@ -12,7 +12,36 @@ import { WebsiteList, WebsiteItem } from "./Websites";
 
 const articles = {
   padding: "20px",
-  margin: "10px"
+  margin: "10px",
+  border:"silver, 2px, solid",
+
+}
+
+const image = {
+  border:"black solid 5px",
+}
+
+const searchResult = {
+  textAlign:"center",
+  backgroundImage: "linear-gradient(black, #0092CA)",
+  width:"800px",
+  marginLeft:"20%"
+}
+
+const caption={
+  color:"silver",
+  textAlign:"left",
+  padding:"10px",
+  fontSize:"16px",
+}
+
+const captionTitle = {
+    fontFamily: "'Lora', serif",
+    color:"black",
+    background:"white",
+    border:"black solid 5px",
+    textAlign:"center",
+
 }
 
 class App extends Component {
@@ -96,7 +125,7 @@ class App extends Component {
           gameStopArr: res.data,
           cardGPrice: res.data[0].newPrice
         });
-        console.log("Gamespot Data", res.data);
+        console.log("Gamestop Data", res.data);
       })
     axios.get("/api/savedValues/" + this.state.searchString)
       .then(res => {
@@ -104,7 +133,7 @@ class App extends Component {
           igdbArr: res.data, 
           cardName: res.data[0].name, 
           cardSummary: res.data[0].summary, 
-          cardImage: res.data[0].cover.url, 
+          cardImage: "https://igdb.spacechop.com/igdb/image/upload/t_cover_big/" + res.data[0].cover.cloudinary_id + ".jpg", 
           websites: res.data[0].websites 
         });
         console.log("IGDB Game Data", res.data);
@@ -119,6 +148,9 @@ class App extends Component {
       currentPage: page 
     })
   }
+
+
+
 
   renderPage = () => {
     if (this.state.currentPage === "Home") {
@@ -137,13 +169,13 @@ class App extends Component {
         <div>
           <div>
             <div>
-              <div>
-                <h1>{this.state.cardName}</h1>
-                <p>{this.state.cardSummary}</p>
-                <img src={this.state.cardImage}/>
+              <div style={searchResult}>
+                <h1 style={captionTitle}>{this.state.cardName}</h1>
+                <p style={caption}>{this.state.cardSummary}</p>
+                <img style={image} src={this.state.cardImage}/>
                 <p>{this.state.cardGPrice}</p>
                 <p>${this.state.cardWPrice}</p>
-                </div>
+              </div>
              {/* <GamesList>
               {this.state.igdbArr.map(game => {
                 return (

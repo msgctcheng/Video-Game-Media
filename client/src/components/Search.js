@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { GamesList, GamesItem } from "./GamesList";
 
+const article = {
+  textAlign:"center",
+  backgroundImage: "linear-gradient(black, #0092CA)",
+  width:"375px",
+
+}
+
+
 class Search extends Component {
 	state = {
 		gameData: []
@@ -16,7 +24,7 @@ class Search extends Component {
 
 	render() {
 		return ( 
-			<GamesList>
+			<GamesList >
 				<div className="col-md-4">
 				{this.state.gameData.map(game => {
 					return (

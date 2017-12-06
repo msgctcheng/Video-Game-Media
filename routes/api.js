@@ -4,6 +4,10 @@ const request = require("request-promise");
 const cheerio = require('cheerio');
 const igdb = require('igdb-api-node').default;
 const client = igdb("fa8bc67db1518b344b54f3cb76bc4e66")
+const User = require("../models/User");
+const mongoose = require("mongoose");
+let couldId = "";
+
 
 const User = require("../models/User");
 
@@ -110,26 +114,33 @@ router.route("/articleScrape")
 
 router.route("/savedValues/:searchString")
     .get((req, res) => {
+        let cloudId = '';
         client.games({
             search: req.params.searchString,
-            fields: ["name", "cover", "release_dates.human", "summary", "websites"],
+            fields: ["name", "cover", "cover.cloudinary_id", "release_dates.human", "summary", "websites"],
             limit: 1
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
-
         }).catch(error => {
             throw error;
         });
-        
     });
 
 router.route("/saveArticle")
     .post((req, res) => {
-        console.log("We hit saved Article route-----------------------", req.body)
-        var articleData = {
-            source: req.body.url,
-            title: req.body.title,
-            articleText: req.body.summary
+        var articleData = {};
+        if (req.body.description === "" || req.body.description === undefined) {
+            articleData = {
+                source: req.body.url,
+                title: req.body.title,
+                articleText: req.body.summary
+            }
+        } else {
+            articleData = {
+                source: req.body.url,
+                title: req.body.title,
+                articleText: req.body.description
+            }
         }
         db.Article
             .create(articleData)
@@ -138,7 +149,6 @@ router.route("/saveArticle")
                 res.json(results)
             })
             .catch(err => {
-                console.log("Error?????????????????????????", err)
                 res.status(500)
                 .json(err)
             });

@@ -21,7 +21,7 @@ const headings = {
 
 const subheadings = {
   fontSize: "15px",
-   fontFamily: "'Lora', serif",
+  fontFamily: "'Lora', serif",
   color: "white",
   textAlign: 'center' 
 }
@@ -51,14 +51,14 @@ class Home extends Component {
   render () {
   return (
   <div className ="body" >
-    <h1>Home</h1>
+    <h1> Home</h1>
     <div className="row">
-      <div style={panels} className="panel col-md-4">
+      <div  className=" col-md-4">
         <div className="panel-heading">
-        <h3 className="panel-title" style={headings}>Popular Games list</h3>
+        <h3 className="panel-title" style={headings}>Popular Games</h3>
         </div>
 
-        <div  className="panel-body">
+        <div className="panel-body">
         <GamesList>
         <div className="col-md-4">
 					{this.state.gameFeed.map(game => {
@@ -75,16 +75,16 @@ class Home extends Component {
         </div>
       </div>
 
-      <div style={panels}  className="panel  col-md-4">
+      <div   className="  col-md-4">
         <div className="panel-heading">
-          <h3 className="panel-title" style={headings}>Latest News list</h3>
+          <h3 className="panel-title" style={headings}>Latest News</h3>
         </div>
 
         <div className="panel-body">
         </div>
       </div>
         
-        <div style={panels} className = "col-md-4" >
+        <div  className = "col-md-4" >
          <div  className="panel-heading row" >
             <h3 className="panel-title"  style={headings}>Latest Videos</h3>
           </div>
