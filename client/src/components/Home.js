@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { GamesList, GamesItem } from "./GamesList";
+import { ArticlesList, ArticlesItem } from "./ArticlesList";
 
 const iconStyle={
   width: "100px"
@@ -31,9 +32,7 @@ class Home extends Component {
   
   state = {
     articleFeed: [],
-    gameFeed: [],
-    gameTitle: [],
-    gameImage: []    
+    gameFeed: []  
   };
   
   componentDidMount() {
@@ -45,11 +44,8 @@ class Home extends Component {
     
     axios.get("/api/homePopularGames")
     .then(res => {
-      
-
       this.setState({ 
         gameFeed: res.data
-        
         });
       console.log("IGDB Popular Games", res.data);
     })
@@ -71,9 +67,9 @@ class Home extends Component {
 					{this.state.gameFeed.map(game => {
 						return (
 							<GamesItem
+                key={game.name}
 								name={game.name}
 								thumbnail={game.cover.url.replace("t_thumb", "t_cover_big")}
-								// price={game.salePrice}
 							/>
 						);
           })}
@@ -88,6 +84,19 @@ class Home extends Component {
         </div>
 
         <div className="panel-body">
+        <ArticlesList className="row">
+          {this.state.articleFeed.slice(1, 10).map(article => {
+            return (
+              <ArticlesItem
+                key={article.pulse.title}
+                title={article.pulse.title}
+                // summary={article.pulse.summary}
+                url={article.pulse.url}
+                img={article.pulse.image}
+              />
+            );
+          })}
+        </ArticlesList>
         </div>
       </div>
         
