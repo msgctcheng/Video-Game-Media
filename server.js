@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+config = require('./config');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,11 +18,12 @@ app.use(routes);
 
 mongoose.Promise = global.Promise;
 
-  mongoose.connect(
-    "mongodb://<dbuser>:<dbpassword>@ds133136.mlab.com:33136/heroku_phf4wx1r",
-    {
-    useMongoClient: true
-  }
+
+mongoose.connect(
+  config.database,
+  {
+  useMongoClient: true
+}
 );
 
 app.listen(PORT, function() {
