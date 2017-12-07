@@ -17,9 +17,11 @@ app.use(routes);
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(
-  process.env.MONGODB_URI ||"mongodb://<dbuser>:<dbpassword>@ds133136.mlab.com:33136/heroku_phf4wx1r", 
-  {
+  mongoose.connect(
+    {
+      'database': process.env.MONGODB_URI ||"mongodb://<dbuser>:<dbpassword>@ds133136.mlab.com:33136/heroku_phf4wx1r"
+    },
+    {
     useMongoClient: true
   }
 );
