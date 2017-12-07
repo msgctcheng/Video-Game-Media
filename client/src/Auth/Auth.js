@@ -7,7 +7,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'video-game-media.auth0.com',
     clientID: '1LnYYtCHeV8GY-OxPFMgPZFY_8vQAKnu',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'https://gamerally.herokuapp.com/callback',
     audience: 'https://video-game-media.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
