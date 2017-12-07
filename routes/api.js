@@ -123,8 +123,15 @@ router.route("/savedValues/:searchString")
 
 router.route("/saveArticle")
     .post((req, res) => {
+        console.log("ROUTE---------------", req.body);
         var articleData = {};
-        if (req.body.description === "" || req.body.description === undefined) {
+        if (req.body.description === undefined && req.body.summary === undefined) {
+            articleData = {
+                source: req.body.pulse.url,
+                title: req.body.pulse.title,
+                articleText: req.body.pulse.summary
+            }
+        } else if (req.body.description === undefined) {
             articleData = {
                 source: req.body.url,
                 title: req.body.title,
@@ -140,7 +147,6 @@ router.route("/saveArticle")
         db.Article
             .create(articleData)
             .then(results => {
-                console.log("DB Results!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", results)
                 res.json(results)
             })
             .catch(err => {
@@ -151,11 +157,19 @@ router.route("/saveArticle")
 
 router.route("/saveGame")
     .post((req, res) => {
+        var gameData = {
+            title: req.body.name,
+            imgUrl: req.body.cover.url
+        };
         db.Game
-            .create(req.body)
-            .then(results => res.json(results))
-            .catch(err => res.status(500)
-                .json(err));
+            .create(gameData)
+            .then(results => {
+                res.json(results)
+            })
+            .catch(err => {
+                res.status(500)
+                .json(err)
+            });
     });
 
 router.route("/retreiveArticles")

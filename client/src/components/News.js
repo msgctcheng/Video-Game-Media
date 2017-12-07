@@ -25,8 +25,7 @@ class News extends Component {
  
   polyStuff = () => {
     API.polygonTopHeadlines()
-     .then(res => {this.setState({ articles: res.articles }),
-       console.log("POLYGON IS KINDA COOL", res.articles);
+     .then(res => {this.setState({ articles: res.articles })
      })    
   }
   
@@ -34,16 +33,14 @@ class News extends Component {
   gamespotStuff = () => {
     axios.get("/api/articleScrape/")
       .then(res => {this.setState({ articles: res.data })
-      console.log("GameSpot", res.data);
     })
   }
 
   clickToSave = (article) => {
-    console.log("Save Button clicked", article);
-      axios.post("/api/saveArticle", article)
-      .then(res => {
-        console.log("Click", res);
-      })
+    axios.post("/api/saveArticle", article)
+    .then(res => {
+      console.log("Click", res.data);
+    })
   }
 
   handleTab = tab => {
