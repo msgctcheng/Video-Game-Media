@@ -18,7 +18,7 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 
   mongoose.connect(
-    "mongodb://<dbuser>:<dbpassword>@ds133136.mlab.com:33136/heroku_phf4wx1r"
+    "mongodb://<dbuser>:<dbpassword>@ds133136.mlab.com:33136/heroku_phf4wx1r",
     {
     useMongoClient: true
   }
