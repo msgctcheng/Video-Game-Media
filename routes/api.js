@@ -79,7 +79,7 @@ router.route("/articleScrape")
                 articleArray.push(articleResults[i]);
             });
         }).then(() => {  
-        res.json(articleArray);
+        res.send(articleArray);
     });
 });
 
