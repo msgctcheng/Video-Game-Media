@@ -62,6 +62,7 @@ class App extends Component {
     cardImage: "",
     cardGPrice: "",
     cardWPrice: "",
+    category: []
   };
 
   searchWalmart = (query) => {
@@ -171,21 +172,9 @@ class App extends Component {
             <div>
               <div style={searchResult}>
                 <h1 style={captionTitle}>{this.state.cardName}</h1>
-                <p style={caption}>{this.state.cardSummary}</p>
                 <img style={image} src={this.state.cardImage}/>
-                <p>{this.state.cardGPrice}</p>
-                <p>${this.state.cardWPrice}</p>
-              </div>
-             {/* <GamesList>
-              {this.state.igdbArr.map(game => {
-                return (
-                  <div>
-                  <GamesItem
-                    title={game.name}
-                    img={game.cover.url}
-                    summary={game.summary}
-                  /> */}
-                   <WebsiteList>
+                <p style={caption}>{this.state.cardSummary}</p>
+                <WebsiteList className="row">
                     {this.state.websites.map(website => {
                       return (
                         <WebsiteItem
@@ -193,37 +182,24 @@ class App extends Component {
                         />
                       );
                     })}
+                </WebsiteList>
+                <p style={caption}>Gamestop Price: {this.state.cardGPrice}</p>
+                <p style={caption}>Walmart Price: ${this.state.cardWPrice}</p>
+
+              </div>
+                   <WebsiteList>
+                    {this.state.websites.map(website => {
+                      return (
+                        <WebsiteItem
+                          url={website.url}
+                          category={website.category}
+                        />
+                      );
+                    })}
                   </WebsiteList>
+
                   </div>
-                );
-              })}
-            {/* </GamesList> */}
-            </div>
-            {/* <div> */}
-            {/* <GamesList>
-              {this.state.gameStopArr.map(game => {
-                return (
-                  <GamesItem
-                    title={game.newTitle}
-                    price={game.newPrice}
-                  />
-                );
-              })}
-            </GamesList> */}
-            {/* </div> */}
-            {/* <div>
-            <GamesList>
-              {this.state.walmartArr.map(game => {
-                return (
-                  <GamesItem
-                    title={game.name}
-                    img={game.mediumImage}
-                    price={game.salePrice}
-                  />
-                );
-              })}
-            </GamesList>
-            </div> */}
+              </div>
           </div>
       );
     } else {
