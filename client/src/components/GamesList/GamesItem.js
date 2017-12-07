@@ -52,7 +52,7 @@ export const GamesItem = props => (
   <div className="caption" style={caption}>
     <p>{props.summary}</p>
     <p>
-      <a style = {buttons} className="btn btn-primary" role="button" onClick={props.clickSaveGame}>Save Game</a>
+      <a style = {buttons} className="btn btn-primary aniButton" role="button" onClick={props.clickSaveGame}>Save Game</a>
     </p>
   </div>
   </div>
