@@ -62,6 +62,7 @@ class App extends Component {
     cardImage: "",
     cardGPrice: "",
     cardWPrice: "",
+    category: []
   };
 
   searchWalmart = (query) => {
@@ -176,54 +177,18 @@ class App extends Component {
                 <p>{this.state.cardGPrice}</p>
                 <p>${this.state.cardWPrice}</p>
               </div>
-             {/* <GamesList>
-              {this.state.igdbArr.map(game => {
-                return (
-                  <div>
-                  <GamesItem
-                    title={game.name}
-                    img={game.cover.url}
-                    summary={game.summary}
-                  /> */}
                    <WebsiteList>
                     {this.state.websites.map(website => {
                       return (
                         <WebsiteItem
                           url={website.url}
+                          category={website.category}
                         />
                       );
                     })}
                   </WebsiteList>
                   </div>
-                );
-              })}
-            {/* </GamesList> */}
-            </div>
-            {/* <div> */}
-            {/* <GamesList>
-              {this.state.gameStopArr.map(game => {
-                return (
-                  <GamesItem
-                    title={game.newTitle}
-                    price={game.newPrice}
-                  />
-                );
-              })}
-            </GamesList> */}
-            {/* </div> */}
-            {/* <div>
-            <GamesList>
-              {this.state.walmartArr.map(game => {
-                return (
-                  <GamesItem
-                    title={game.name}
-                    img={game.mediumImage}
-                    price={game.salePrice}
-                  />
-                );
-              })}
-            </GamesList>
-            </div> */}
+              </div>
           </div>
       );
     } else {
