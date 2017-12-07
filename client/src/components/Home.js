@@ -122,11 +122,11 @@ class Home extends Component {
           </div>
           <div className = "row">
             <h3 style={subheadings}>IGN</h3>
-            <iframe  width="400" height="315" src="http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=IGNentertainment" frameBorder="0" allowFullScreen></iframe> 
+            <iframe  width="400" height="315" src="https://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=IGNentertainment" frameBorder="0" allowFullScreen></iframe> 
             <h3 style={subheadings}>Polygon</h3>
-            <iframe  width="400" height="315" src="http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=polygon" frameBorder="0" allowFullScreen></iframe> 
+            <iframe  width="400" height="315" src="https://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=polygon" frameBorder="0" allowFullScreen></iframe> 
             <h3 style={subheadings}>Gamespot</h3>
-            <iframe  width="400" height="315" src="http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=gamespot" frameBorder="0" allowFullScreen></iframe> 
+            <iframe  width="400" height="315" src="https://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=gamespot" frameBorder="0" allowFullScreen></iframe> 
           </div>
     </div>
 </div>
