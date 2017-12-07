@@ -18,21 +18,24 @@ const navbarStyle = {
 
     fontSize: "17px",
     fontFamily: "'Lora', serif",
-    textAlign: "left",
+    textAlign: "center",
     paddingTop:"20px"
 }
 const iconStyle = {
   width: "200px",
-  marginTop:"0",
-
+  float: "left",
+  marginTop:"0"
 }
 
 const name = {
   color: "white",
+  width: "100%",
   fontSize: "17px",
   fontFamily: "'Lora', serif",
   textAlign: "center",
+  paddingTop: "50px",
   marginRight: "10px",
+  float: "initial"
 }
 
 const nameStyle = {
@@ -58,6 +61,12 @@ const buttonStyle = {
   marginRight: "5px"
 }
 
+const buttonRight = {
+  float: "right",
+  paddingTop: "9px",
+  paddingRight: "35px"
+}
+
 const containerStyle ={
  
   marginTop: 0
@@ -66,17 +75,19 @@ const containerStyle ={
 class Navbar extends Component {
   render() {
     return(
+    
+    <div className="container-fluid" style={containerStyle}>
     <nav className="navbar" style={navbarStyle}>
     <img className="icon" src={logo} alt={"logo"} style={iconStyle}/>
 
-    <div className="container-fluid" style={containerStyle}>
+    
       <div className="navbar-header"style={name}>
 
 
 
-      </div>
+      {/* </div>
 
-      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> */}
         <ul className="nav navbar-nav nav-tabs">
         <li
           onClick={() => this.props.handlePage("Home")}
@@ -99,7 +110,7 @@ class Navbar extends Component {
 
 
 
-        <ul className="nav navbar-nav navbar-right">
+        <ul className="nav navbar-nav navbar-right" style={buttonRight}>
           <li
             onClick={() => this.props.handlePage("Saved")}
             className={this.props.currentPage === "Saved" ? "active" : ""}
@@ -109,9 +120,9 @@ class Navbar extends Component {
           <li><Login auth={auth} /></li>
         </ul>
       </div>
-    </div>
-
-    </nav>);
+      </nav>
+      </div>
+    );
   
 
   }

@@ -167,40 +167,25 @@ class App extends Component {
       return <Saved />
     } else if (this.state.currentPage === "Search") {
       return (
-        <div>
-          <div>
-            <div>
-              <div style={searchResult}>
-                <h1 style={captionTitle}>{this.state.cardName}</h1>
-                <img style={image} src={this.state.cardImage}/>
-                <p style={caption}>{this.state.cardSummary}</p>
-                <WebsiteList className="row">
-                    {this.state.websites.map(website => {
-                      return (
-                        <WebsiteItem
-                          url={website.url}
-                        />
-                      );
-                    })}
-                </WebsiteList>
-                <p style={caption}>Gamestop Price: {this.state.cardGPrice}</p>
-                <p style={caption}>Walmart Price: ${this.state.cardWPrice}</p>
 
-              </div>
-                   <WebsiteList>
-                    {this.state.websites.map(website => {
-                      return (
-                        <WebsiteItem
-                          url={website.url}
-                          category={website.category}
-                        />
-                      );
-                    })}
-                  </WebsiteList>
+        <div style={searchResult}>
+          <h1 style={captionTitle}>{this.state.cardName}</h1>
+          <img style={image} src={this.state.cardImage}/>
+          <p style={caption}>{this.state.cardSummary}</p>
+          <WebsiteList className="row">
+              {this.state.websites.map(website => {
+                return (
+                  <WebsiteItem
+                    url={website.url}
+                    category={website.category}
+                  />
+                );
+              })}
+          </WebsiteList>
+          <p style={caption}>Gamestop Price: {this.state.cardGPrice}</p>
+          <p style={caption}>Walmart Price: ${this.state.cardWPrice}</p>
 
-                  </div>
-              </div>
-          </div>
+        </div>
       );
     } else {
       return <Home />;
