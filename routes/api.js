@@ -94,7 +94,7 @@ router.route("/articleScrape")
                 {
                     title: $(element).children("a").children("div.media-body").children("h3.media-title").text(), 
                     summary: $(element).children("a").children("div.media-body").children("p.media-deck").text(),
-                    url: $(element).children("a").attr("href"),
+                    url: "https://www.gamespot.com"+ $(element).children("a").attr("href"),
                     img: $(element).children("a").children("figure").children("div").children("img").attr("src")
                 };
 
@@ -122,22 +122,26 @@ router.route("/savedValues/:searchString")
     });
 
 router.route("/saveArticle")
-    .post((req, res) => {
-        console.log("ROUTE---------------", req.body);
+    .post((req, res) => {      
         var articleData = {};
-        if (req.body.description === undefined && req.body.summary === undefined) {
+        // works for popular games
+        if (req.body.summary == undefined && req.body.description === undefined ){
             articleData = {
                 source: req.body.pulse.url,
                 title: req.body.pulse.title,
                 articleText: req.body.pulse.summary
             }
-        } else if (req.body.description === undefined) {
+        }
+        // works for Gamespot
+        else if (req.body.description === undefined) {
             articleData = {
                 source: req.body.url,
                 title: req.body.title,
                 articleText: req.body.summary
             }
-        } else {
+        } 
+        // works for IGN and Polygon
+        else if (req.body.pulse === undefined) {
             articleData = {
                 source: req.body.url,
                 title: req.body.title,
@@ -147,7 +151,7 @@ router.route("/saveArticle")
         db.Article
             .create(articleData)
             .then(results => {
-                res.json(results)
+                res.json(results);
             })
             .catch(err => {
                 res.status(500)

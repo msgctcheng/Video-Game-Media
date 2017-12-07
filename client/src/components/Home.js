@@ -53,14 +53,14 @@ class Home extends Component {
   clickSaveGame = (game) => {
     axios.post("/api/saveGame", game)
       .then(res => {
-        console.log("Game Click", res);
+        console.log("Popular Game Click", res);
       })
   }
 
   clickToSave = (article) => {
       axios.post("/api/saveArticle", article)
       .then(res => {
-        console.log("Article Click", res.data);
+        console.log("Popular Article Click", res);
       })
   }
  
