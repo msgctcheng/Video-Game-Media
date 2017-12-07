@@ -80,7 +80,11 @@ router.route("/articleScrape")
             });
         }).then(() => {  
         res.send(articleArray);
-    });
+    }).catch( (err)=> {
+        if (err) {
+            console.log (err);
+        }
+    })
 });
 
 router.route("/savedValues/:searchString")

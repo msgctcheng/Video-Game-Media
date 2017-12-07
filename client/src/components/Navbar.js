@@ -115,7 +115,7 @@ class Navbar extends Component {
             onClick={() => this.props.handlePage("Saved")}
             className={this.props.currentPage === "Saved" ? "active" : ""}
           >
-            <button style={buttonStyle}>Saved</button>
+            <button style={buttonStyle} className="aniButton">Saved</button>
           </li>
           <li><Login auth={auth} /></li>
         </ul>

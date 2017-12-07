@@ -40,7 +40,7 @@ export const WebsiteItem = (props) => {
     }
     return (
     <div className = "col-md-4">
-        <p><a className="btn btn-primary" style={buttons} role="button" href={props.url}>{title}</a></p>
+        <p><a className="btn btn-primary aniButton" style={buttons} role="button" href={props.url} target="_blank">{title}</a></p>
     </div>
  );
 }

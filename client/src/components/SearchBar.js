@@ -14,9 +14,9 @@ render() {
     return (
         <form className="navbar-form navbar-left">
         <div className="form-group">
-             <input type="text" className="form-control" placeholder="Look it Up!" value={this.props.value} onChange={this.props.handleInputChange} name="searchString"/>
+             <input type="text" className="form-control" placeholder="Look it Up!" value={this.props.value} onChange={this.props.handleInputChange} name="searchString" required/>
         </div>
-        <button style={buttonStyle} onClick={this.props.handleFormSubmit} className="btn" >Submit</button>
+        <button style={buttonStyle} onClick={this.props.handleFormSubmit} className="btn aniButton" >Submit</button>
 </form>);
 }}
 export default SearchBar;
