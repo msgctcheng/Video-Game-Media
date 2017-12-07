@@ -172,10 +172,20 @@ class App extends Component {
             <div>
               <div style={searchResult}>
                 <h1 style={captionTitle}>{this.state.cardName}</h1>
-                <p style={caption}>{this.state.cardSummary}</p>
                 <img style={image} src={this.state.cardImage}/>
-                <p>{this.state.cardGPrice}</p>
-                <p>${this.state.cardWPrice}</p>
+                <p style={caption}>{this.state.cardSummary}</p>
+                <WebsiteList className="row">
+                    {this.state.websites.map(website => {
+                      return (
+                        <WebsiteItem
+                          url={website.url}
+                        />
+                      );
+                    })}
+                </WebsiteList>
+                <p style={caption}>Gamestop Price: {this.state.cardGPrice}</p>
+                <p style={caption}>Walmart Price: ${this.state.cardWPrice}</p>
+
               </div>
                    <WebsiteList>
                     {this.state.websites.map(website => {
@@ -187,6 +197,7 @@ class App extends Component {
                       );
                     })}
                   </WebsiteList>
+
                   </div>
               </div>
           </div>

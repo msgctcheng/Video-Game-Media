@@ -1,5 +1,16 @@
 import React from "react";
 
+const buttons = {
+  margin:"10px",
+  color:"black",
+  fontFamily: "'Lora', serif",
+  background: "-webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc))",
+  backgroundImage: "linear-gradient(#fff, #ccc)",
+  borderRadius: "9px",
+  boxShadow: "0px 0px 4px 2px rgba(0,0,0,0.4)",
+  height: "35px",
+}
+
 export const WebsiteItem = (props) => {
     let title = "";    
    if(props.category === 1) {
@@ -28,8 +39,8 @@ export const WebsiteItem = (props) => {
         title = "Steam"
     }
     return (
-    <div>
-        <p><a className="btn btn-primary" role="button" href={props.url}>{title}</a></p>
+    <div className = "col-md-4">
+        <p><a className="btn btn-primary" style={buttons} role="button" href={props.url}>{title}</a></p>
     </div>
  );
 }

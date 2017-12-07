@@ -16,6 +16,7 @@ router.route("/homePopularGames")
             limit: 10
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
+            console.log("hi");
         }).catch(error => {
             throw error;
         });
