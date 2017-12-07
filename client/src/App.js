@@ -5,7 +5,7 @@ import Login from "./Login";
 import Auth from "./Auth/Auth";
 import history from "./history";
 import './App.css';
-
+import Callback from "./Callback/Callback"
 const auth = new Auth();
 
 const handleAuthentication = (nextState, replace) => {
@@ -22,6 +22,10 @@ class App extends Component {
         <div className="App">
          
           <Route path="/" render={(props) => <Main auth={auth} {...props} />}/>
+          <Route path="/callback" render={(props) => {
+            handleAuthentication(props);
+            return <Callback {...props} />
+          }} />
          
         </div>
        
