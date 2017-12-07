@@ -3,6 +3,7 @@ import axios from "axios";
 import { GamesList, GamesItem } from "./GamesList";
 import { ArticlesList, ArticlesItem } from "./ArticlesList";
 
+
 const iconStyle={
   width: "100px"
 }
@@ -67,7 +68,7 @@ class Home extends Component {
   render () {
   return (
   <div className ="body" >
-    <h1> Home</h1>
+    <h1> Home</h1>  
     <div className="row">
       <div  className=" col-md-4">
         <div className="panel-heading">
