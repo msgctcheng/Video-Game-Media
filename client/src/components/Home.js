@@ -39,7 +39,6 @@ class Home extends Component {
     axios.get("/api/homeIgdbNewsFeed")
     .then(res => {
       this.setState({ articleFeed: res.data});
-      console.log("IGDB Latest News", res.data);
     })
     
     axios.get("/api/homePopularGames")
@@ -47,9 +46,22 @@ class Home extends Component {
       this.setState({ 
         gameFeed: res.data
         });
-      console.log("IGDB Popular Games", res.data);
     })
   };
+
+  clickSaveGame = (game) => {
+    axios.post("/api/saveGame", game)
+      .then(res => {
+        console.log("Game Click", res);
+      })
+  }
+
+  clickToSave = (article) => {
+      axios.post("/api/saveArticle", article)
+      .then(res => {
+        console.log("Article Click", res.data);
+      })
+  }
  
   render () {
   return (
@@ -67,6 +79,7 @@ class Home extends Component {
 					{this.state.gameFeed.map(game => {
 						return (
 							<GamesItem
+                clickSaveGame={() => this.clickSaveGame(game)}
                 key={game.name}
 								name={game.name}
 								thumbnail={game.cover.url.replace("t_thumb", "t_cover_big")}
@@ -88,6 +101,7 @@ class Home extends Component {
           {this.state.articleFeed.slice(1, 10).map(article => {
             return (
               <ArticlesItem
+                clickToSave={() => this.clickToSave(article)}
                 key={article.pulse.title}
                 title={article.pulse.title}
                 // summary={article.pulse.summary}

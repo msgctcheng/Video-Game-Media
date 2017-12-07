@@ -6,22 +6,22 @@ const gameSchema = new Schema({
         type: String,
         required: true
     },
-    releaseDate: {
-        type: String,
-        required: true
-    },
-    summary: {
-        type: String,
-        required: true
-    },
+    // releaseDate: {
+    //     type: String,
+    //     required: true
+    // },
+    // summary: {
+    //     type: String,
+    //     required: true
+    // },
     imgUrl: {
         type: String,
         required: true  
-    },
-    websites: {
-        type: String,
-        required: true
     }
+    // websites: {
+    //     type: String,
+    //     required: true
+    // }
 })
 const Game = mongoose.model("Games", gameSchema);
 
