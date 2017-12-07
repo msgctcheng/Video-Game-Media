@@ -50,7 +50,7 @@ class Saved extends Component {
 	render() {
 		return (
 			<div className ="body" >
-			<h1> Home</h1>
+			<h1> Saved Items</h1>
 			<div className="row">
 				<div  className=" col-md-4">
 					<div className="panel-heading">
