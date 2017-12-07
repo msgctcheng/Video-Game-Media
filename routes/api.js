@@ -16,7 +16,6 @@ router.route("/homePopularGames")
             limit: 10
         }).then(response => {
             res.send(JSON.stringify(response.body, null));
-            console.log("hi");
         }).catch(error => {
             throw error;
         });
@@ -37,39 +36,26 @@ router.route("/homeIgdbNewsFeed")
 
 router.route("/retailScrape/:searchString")
     .get((req, res, next) => {
-
         let spaceless = req.params.searchString.replace(/\s/g, '+');
-
-        let gamestopResults = {};
-       
+        let gamestopResults = {};    
         request("https://www.gamestop.com/browse?nav=16k-" + spaceless, function (err, resp, html) {
             var $ = cheerio.load(html);
-
             $("div.products").map(function (i, element) {
-
                 //Product Image
-
                 gamestopResults.usedImg = "https://www.gamestop.com" + $(element).children("div.preowned_product").first().children("div.alpha").children("a").children("img").attr("src");
-
                 //product price
                 gamestopResults.usedPrice = $(element).children("div.preowned_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
-
                 gamestopResults.usedTitle = $(element).children("div.preowned_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
             });
-
             $("div.products").map(function (i, element) {
-
                 //Product Image
                 gamestopResults.newImg = "https://www.gamestop.com" + $(element).children("div.new_product").first().children("div.alpha").children("a").children("img").attr("src");
-
                 //product price
                 gamestopResults.newPrice = $(element).children("div.new_product").first().children("div.purchase_info").children("p.pricing.ats-product-price").text();
-
                 gamestopResults.newTitle = $(element).children("div.new_product").first().children("div.product_info.grid_12").children("h3.ats-product-title").text();
             });
-
-
-        }).then(() => {
+        })
+        .then(() => {
             let gamestopArray = [gamestopResults];
             res.json(gamestopArray);
         });
@@ -77,30 +63,20 @@ router.route("/retailScrape/:searchString")
     
 router.route("/articleScrape")
     .get((req, res) => {
-        
         let articleResults = {};
         let articleArray = [];
-
         request("https://www.gamespot.com", function (err, resp, html) {
-            var $ = cheerio.load(html)
-            
+            var $ = cheerio.load(html)           
             //Popular article feed on gamespot.com
-
-            $("article").each(function (i, element) {
-                
+            $("article").each(function (i, element) {               
                 //Popular article titles
-                articleResults[i] = 
-                
-                {
+                articleResults[i] = {
                     title: $(element).children("a").children("div.media-body").children("h3.media-title").text(), 
                     summary: $(element).children("a").children("div.media-body").children("p.media-deck").text(),
                     url: "https://www.gamespot.com"+ $(element).children("a").attr("href"),
                     img: $(element).children("a").children("figure").children("div").children("img").attr("src")
                 };
-
                 articleArray.push(articleResults[i]);
-                // console.log(articleResults[i]);
-          
             });
         }).then(() => {  
         res.json(articleArray);
@@ -124,24 +100,19 @@ router.route("/savedValues/:searchString")
 router.route("/saveArticle")
     .post((req, res) => {      
         var articleData = {};
-        // works for popular games
-        if (req.body.summary == undefined && req.body.description === undefined ){
+        if (req.body.summary == undefined && req.body.description === undefined ){ // works for popular games
             articleData = {
                 source: req.body.pulse.url,
                 title: req.body.pulse.title,
                 articleText: req.body.pulse.summary
             }
-        }
-        // works for Gamespot
-        else if (req.body.description === undefined) {
+        } else if (req.body.description === undefined) { // works for Gamespot
             articleData = {
                 source: req.body.url,
                 title: req.body.title,
                 articleText: req.body.summary
             }
-        } 
-        // works for IGN and Polygon
-        else if (req.body.pulse === undefined) {
+        } else if (req.body.pulse === undefined) { // works for IGN and Polygon
             articleData = {
                 source: req.body.url,
                 title: req.body.title,
@@ -150,13 +121,11 @@ router.route("/saveArticle")
         }
         db.Article
             .create(articleData)
-            .then(results => {
-                res.json(results);
-            })
-            .catch(err => {
+            .then(results =>
+                res.json(results))
+            .catch(err =>
                 res.status(500)
-                .json(err)
-            });
+                .json(err));
     });
 
 router.route("/saveGame")
@@ -167,30 +136,32 @@ router.route("/saveGame")
         };
         db.Game
             .create(gameData)
-            .then(results => {
-                res.json(results)
-            })
-            .catch(err => {
+            .then(results =>
+                res.json(results))
+            .catch(err =>
                 res.status(500)
-                .json(err)
-            });
-    });
-
-router.route("/retreiveArticles")
-    .get((req, res) => {
-        db.Article
-            .find({})
-            .then(results => res.json(results))
-            .catch(err => res.status(500)
                 .json(err));
     });
 
-router.route("/retreiveGames")
+router.route("/retrieveArticles")
     .get((req, res) => {
-        db.Games
+        db.Article
             .find({})
-            .then(results => res.json(results))
-            .catch(err => res, status(500)
+            .then(results =>
+                res.send(results))
+            .catch(err =>
+                res.status(500)
+                .json(err));
+    });
+
+router.route("/retrieveGames")
+    .get((req, res) => {
+        db.Game
+            .find({})
+            .then(results =>
+                res.send(results))
+            .catch(err =>
+                res.status(500)
                 .json(err));
     });
 
