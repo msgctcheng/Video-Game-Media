@@ -15,7 +15,7 @@ export default class Auth {
 
   login() { 
     this.auth0.authorize();
-    this.handleAuthentication();
+   
   }
 
 
@@ -31,7 +31,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         history.replace('/home');
-        window.location("/home");
+   
       } else if (err) {
         history.replace('/home');
         console.log(err);
